@@ -28,20 +28,20 @@
         <div class="row s_product_inner">
           <div class="col-lg-6">
             <!-- Product Image -->
-				<div class="col-lg-6">
-					<div class="details_image">
-						@foreach ($products->product_image as $jpg)
-							@if($loop->iteration == 1)
-								<div class="details_image_large"><img src="/uploads/product_images/{{$jpg->image_name}}" alt="">
-								</div>
-								<div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
-							@else
-								<div class="details_image_thumbnail active" data-image="/uploads/product_images/{{$jpg->image_name}}"><img src="/uploads/product_images/{{$jpg->image_name}}" alt=""></div>
-							@endif
-						@endforeach
-						</div>
-					</div>
-				</div>
+            <div class="col-lg-6">
+              <div class="details_image">
+                @foreach ($products->product_image as $jpg)
+                  @if($loop->iteration == 1)
+                    <div class="details_image_large"><img src="/uploads/product_images/{{$jpg->image_name}}" alt="">
+                    </div>
+                    <div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
+                  @else
+                    <div class="details_image_thumbnail active" data-image="/uploads/product_images/{{$jpg->image_name}}"><img src="/uploads/product_images/{{$jpg->image_name}}" alt=""></div>
+                  @endif
+                @endforeach
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-lg-5 offset-lg-1">
             <div class="s_product_text">

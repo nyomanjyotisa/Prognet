@@ -21,6 +21,9 @@
   <!-- main css -->
   <link rel="stylesheet" href="{{ asset('eiser/css/style.css') }} " />
   <link rel="stylesheet" href="{{ asset('eiser/css/responsive.css') }} " />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('user/product.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('user/product_responsive.css')}}">
 </head>
 
 <body>
@@ -47,6 +50,7 @@
   <script src="{{ asset('eiser/vendors/counter-up/jquery.counterup.js') }} "></script>
   <script src="{{ asset('eiser/js/mail-script.js') }} "></script>
   <script src="{{ asset('eiser/js/theme.js') }} "></script>
+  <script src="{{ asset('user/product.js')  }}"></script>
 </body>
 
 </html>
