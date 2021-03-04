@@ -69,15 +69,21 @@
 <!--================ Inspired Product Area =================-->
 <section class="inspired_product_area section_gap_bottom_custom">
     <div class="container">
+    
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <div class="main_title">
             <h2><span>Inspired products</span></h2>
             <p>Bring called seed first of third give itself now ment</p>
           </div>
+          
         </div>
       </div>
 
+
+      <div class="ganti">
+      <div class="products">
+		<div class="container">
       <div class="row">
       @foreach ($product as $products)
         <div class="col-lg-3 col-md-6">
@@ -86,7 +92,7 @@
             @foreach ($products->product_image as $image)
               <img class="img-fluid w-100" src="/uploads/product_images/{{$image->image_name}}" alt="" />
               @break
-			@endforeach
+			      @endforeach
               <div class="p_icon">
                 <a href="/product/{{$products->id}}">
                   <i class="ti-eye"></i>
@@ -109,8 +115,10 @@
             </div>
           </div>
         </div>
-        @endforeach
-
+      @endforeach
+      </div>
+	</div>
+      </div>
       </div>
     </div>
   </section>
@@ -227,4 +235,24 @@
     </div>
   </section>
   <!--================ End Blog Area =================-->
+
+  <script>
+    jQuery(document).ready(function(e){
+        jQuery('.radiobtn').click(function(e){
+            var index = $('.radiobtn').index(this);
+            console.log(jQuery('#radio10'+index).val());
+            jQuery.ajax({
+                url: "{{url('/show_categori')}}",
+                method: 'post',
+                data: {
+                    _token: $('#signup-token').val(),
+                    id: jQuery('#radio10'+index).val(),
+                },
+                success: function(result){
+                    $('.ganti').html(result.hasil);
+                }
+            });
+        });
+    });
+  </script>
 @endsection
