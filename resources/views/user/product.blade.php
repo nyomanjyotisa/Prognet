@@ -28,8 +28,8 @@
         <div class="row s_product_inner">
           <div class="col-lg-6">
             <!-- Product Image -->
-            <div class="col-lg-6">
-              <div class="details_image">
+            <div class="col-lg-11">
+              <div class="details_image w-100">
                 @foreach ($products->product_image as $jpg)
                   @if($loop->iteration == 1)
                     <div class="details_image_large"><img src="/uploads/product_images/{{$jpg->image_name}}" alt="">

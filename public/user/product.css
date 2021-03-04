@@ -879,7 +879,7 @@ section
 }
 .details_image
 {
-	
+
 }
 .details_image_large
 {
@@ -887,6 +887,7 @@ section
 }
 .details_image_large img
 {
+	min-width: 100%;
 	max-width: 100%;
 }
 .details_image_thumbnails
