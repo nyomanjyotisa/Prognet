@@ -66,51 +66,51 @@
               </p>
           
               <div class="card_area">
-              <div class="product_quantity_container">
-							@if (is_null(Auth::user()))
-								@if ($products->stock<1)
-									<button class="btn btn-primary btn-success tombol1" disabled><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Purchase</button>
-									<button class="btn btn-primary btn-rounded tombol1" disabled><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</button>
-								@else
-									<button class="btn btn-primary btn-success tombol1"><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Purchase</button>
-									<button class="btn btn-primary btn-rounded tombol1"><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</button>
-								@endif
-							@else
-								@if ($products->stock<1)
-									<button class="btn btn-primary btn-success" class="tombol1" disabled>
-										<i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i> Purchase
-									</button>
-									<button class="btn btn-primary btn-rounded" id="ajaxSubmit" disabled>
-										<i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart
-									</button>
-								@else
-								<table>
-								<td>
-								<form action="/checkout" method="POST">
-									@csrf
-									<input type="hidden" name="product_id" value="{{$products->id}}" id="product_id">
-									@if ($harga != 0)
-										<input type="hidden" name="subtotal" id="subtotal" value="{{$harga}}">
-									@else
-										<input type="hidden" name="subtotal" id="subtotal" value="{{$products->price}}">
-									@endif
-									<input type="hidden" name="weight" value="{{$products->weight}}">
-									<input type="hidden" name="qty" class="qty" value="1" readonly>
-								   <button type="submit" class="btn btn-success" class="tombol1">
-									<i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Purchase</button>
-								</form>
-								</td>
-								<td>
-										<input type="hidden" value="{{$products->id}}" id="product_id">
-										<input type="hidden" value="{{Auth::user()->id}}" id="user_id">
-									<button class="btn btn-primary btn-rounded" id="ajaxSubmit">
-										<i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart
-									</button>
-								</td>
-								</table>
-								@endif
-							@endif
-						</div>
+                <div class="product_quantity_container">
+  <!-- 							@if (is_null(Auth::user()))
+                  @if ($products->stock<1)
+                    <button class="btn btn-primary btn-success tombol1" disabled><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Purchase</button>
+                    <button class="btn btn-primary btn-rounded tombol1" disabled><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</button>
+                  @else
+                    <button class="btn btn-primary btn-success tombol1"><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Purchase</button>
+                    <button class="btn btn-primary btn-rounded tombol1"><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</button>
+                  @endif
+                @else -->
+                  <!-- @if ($products->stock<1)
+                    <button class="btn btn-primary btn-success" class="tombol1" disabled>
+                      <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i> Purchase
+                    </button>
+                    <button class="btn btn-primary btn-rounded" id="ajaxSubmit" disabled>
+                      <i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart
+                    </button>
+                  @else -->
+                  <table>
+                  <td>
+                  <form action="/checkout" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{$products->id}}" id="product_id">
+  <!-- 									@if ($harga != 0)
+                      <input type="hidden" name="subtotal" id="subtotal" value="{{$harga}}">
+                    @else -->
+                      <input type="hidden" name="subtotal" id="subtotal" value="{{$products->price}}">
+                    <!-- @endif -->
+                    <input type="hidden" name="weight" value="{{$products->weight}}">
+                    <input type="hidden" name="qty" class="qty" value="1" readonly>
+                    <button type="submit" class="btn btn-success" class="tombol1">
+                    <i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Purchase</button>
+                  </form>
+                  </td>
+                  <td>
+                      <input type="hidden" value="{{$products->id}}" id="product_id">
+                      <!-- <input type="hidden" value="{{Auth::user()->id}}" id="user_id"> -->
+                    <button class="btn btn-primary btn-rounded" id="ajaxSubmit">
+                      <i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart
+                    </button>
+                  </td>
+                  </table>
+                  <!-- @endif -->
+                <!-- @endif -->
+              </div>
                 <a class="icon_btn mt-3" href="#">
                   <i class="lnr lnr lnr-diamond"></i>
                 </a>
