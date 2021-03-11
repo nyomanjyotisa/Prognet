@@ -20,4 +20,7 @@ Route::view('/checkout', 'user.checkout');
 Route::view('/cart', 'user.cart');
 Route::post('/show_categori', 'HomeController@show_kategori');
 
-Route::view('admin', 'admin');
+Route::prefix('admin')->group(function(){
+    Route::view('/', 'admin');
+    Route::view('/transaksi', 'admin.transaksi');
+});
