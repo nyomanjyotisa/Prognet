@@ -51,6 +51,7 @@
   <script src="{{ asset('eiser/js/mail-script.js') }} "></script>
   <script src="{{ asset('eiser/js/theme.js') }} "></script>
   <script src="{{ asset('user/product.js')  }}"></script>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
 </body>
 
 </html>

@@ -29,17 +29,31 @@
           <div class="col-lg-6">
             <!-- Product Image -->
             <div class="col-lg-11">
-              <div class="details_image w-100">
+              @php
+                $i=1;
+                $j=1;
+              @endphp
+              <div class="details_image w-100" x-data="{ image: 'image1' }">
+                
+                <div><div>
                 @foreach ($products->product_image as $jpg)
-                  @if($loop->iteration == 1)
-                    <div class="details_image_large"><img src="/uploads/product_images/{{$jpg->image_name}}" alt="">
-                    </div>
-                    <div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
-                  @else
-                    <div class="details_image_thumbnail active" data-image="/uploads/product_images/{{$jpg->image_name}}"><img src="/uploads/product_images/{{$jpg->image_name}}" alt=""></div>
-                  @endif
+                  <img src="/uploads/product_images/{{$jpg->image_name}}" alt="" x-show="image === 'image{{$i}}'" style="height: 500px;">
+                  @php
+                    $i++;
+                  @endphp
                 @endforeach
                 </div>
+                @foreach ($products->product_image as $jpg)
+                  <a href="#" @click.prevent="image = 'image{{$j}}'"
+                  
+                  >
+                  <img :class="{ 'border border-info' : image === 'image{{$j}}'}" src="/uploads/product_images/{{$jpg->image_name}}" alt="" style="height: 100px;">
+                  </a>
+                  @php
+                    $j++;
+                  @endphp
+                @endforeach
+                </div>             
               </div>
             </div>
           </div>
@@ -125,7 +139,7 @@
     </div>
     <!--================End Single Product Area =================-->
 
-    <!--================Product Description Area =================-->
+    <!--================Product Review Area =================-->
     <section class="product_description_area">
       <div class="container">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -143,152 +157,108 @@
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-          <div>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="row total_rate">
-                  <div class="col-6">
-                    <div class="box_total">
-                      <h5>Overall</h5>
-                      <h4>4.0</h4>
-                      <h6>(03 Reviews)</h6>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="rating_list">
-                      <h3>Based on 3 Reviews</h3>
-                      <ul class="list">
-                        <li>
-                          <a href="#"
-                            >5 Star
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i> 01</a
-                          >
-                        </li>
-                        <li>
-                          <a href="#"
-                            >4 Star
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i> 01</a
-                          >
-                        </li>
-                        <li>
-                          <a href="#"
-                            >3 Star
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i> 01</a
-                          >
-                        </li>
-                        <li>
-                          <a href="#"
-                            >2 Star
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i> 01</a
-                          >
-                        </li>
-                        <li>
-                          <a href="#"
-                            >1 Star
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i> 01</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="review_list">
-                  <div class="review_item">
-                    <div class="media">
-                      <div class="d-flex">
-                        <img
-                          src="img/product/single-product/review-1.png"
-                          alt=""
-                        />
-                      </div>
-                      <div class="media-body">
-                        <h4>Blake Ruiz</h4>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-                    </div>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo
-                    </p>
-                  </div>
-                  <div class="review_item">
-                    <div class="media">
-                      <div class="d-flex">
-                        <img
-                          src="img/product/single-product/review-2.png"
-                          alt=""
-                        />
-                      </div>
-                      <div class="media-body">
-                        <h4>Blake Ruiz</h4>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-                    </div>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo
-                    </p>
-                  </div>
-                  <div class="review_item">
-                    <div class="media">
-                      <div class="d-flex">
-                        <img
-                          src="img/product/single-product/review-3.png"
-                          alt=""
-                        />
-                      </div>
-                      <div class="media-body">
-                        <h4>Blake Ruiz</h4>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-                    </div>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          @if (!$products->product_review->count())
+          <div class="d-flex justify-content-center">    
+					  <div class="row mb-5">
+						   <p><strong>Belum ada review produk.</strong></p> 
+					  </div>
+					</div>
+				  @else
+          @foreach ($products->product_review as $item)
+					  <!-- First row -->
+					  <div class="row mb-5">
+						
+						<!-- Image column -->
+						<div class="col-sm-2 col-12 mb-3">
+		  
+						  <img src="{{asset('/uploads/avatars/'.$item->user->profile_image)}}" style="height: 100px;" alt="sample image" class="avatar rounded-circle z-depth-1-half">
+		  
+						</div>
+						<!-- Image column -->
+		  
+						<!-- Content column -->
+						<div class="col-sm-10 col-12">
+		  
+						  <a>
+							{{-- @php
+								dd(Auth::user()->id);
+							@endphp --}}
+							<h5 style="color:#333333" class="user-name font-weight-bold">{{$item->user->name}} 
+							</h5>
+		  
+						  </a>
+		  
+						  <!-- Rating -->
+						  <ul class="rating">
+                <li>
+							@for ($i = 0; $i < $item->rate; $i++)
+							  
+								<i class="fa fa-star"></i>
+							  
+							@endfor
+              </li>  
+              </ul>
+						  <input type="hidden" class="rate{{$loop->iteration-1}}" value="{{$item->rate}}">
+						  <input type="hidden" class="content{{$loop->iteration-1}}" value="{{$item->content}}">
+						  <input type="hidden" class="review_id{{$loop->iteration-1}}" value="{{$item->id}}">
+						  <div class="card-data">
+							<ul class="list-unstyled mb-1">
+							  <li class="comment-date font-small grey-text">
+								<i class="fa fa-clock-o"></i> {{$item->created_at}}</li>
+							</ul>
+						  </div>
+		  
+						  <p class="dark-grey-text article">{{$item->content}}</p>
+		  
+						</div>
+						<!-- Content column -->
+		  
+					  </div>
+					  <!-- First row -->
+						  @if ($item->response->count())
+							<!-- Balasan -->
+							@foreach ($item->response as $balasan)
+							<div class="row mb-5" style="margin-left: 5%">
+							  
+							  <!-- Image column -->
+							  <div class="col-sm-2 col-12 mb-3">
+		  
+								<img src="{{asset('/uploads/avatars/'.$balasan->admin->profile_image)}}" style="height: 100px;" alt="sample image" class="avatar rounded-circle z-depth-1-half">
+		  
+							  </div>
+							  <!-- Image column -->
+		  
+							  <!-- Content column -->
+							  <div class="col-sm-10 col-12">
+		  
+								<a>
+		  
+								  <h5 style="color: #333333" class="user-name font-weight-bold"><span style="margin-right:5px;" class="badge success-color">Admin</span>{{$balasan->admin->name}}</h5>
+		  
+								</a>
+								<!-- Rating -->
+								<div class="card-data">
+								  <ul class="list-unstyled mb-1">
+									<li class="comment-date font-small grey-text">
+									  <i class="fa fa-clock-o"></i> {{$balasan->created_at}}</li>
+								  </ul>
+								</div>
+		  
+								<p class="dark-grey-text article">{{$balasan->content}}</p>
+		  
+							  </div>
+							  <!-- Content column -->
+		  
+							</div>
+		  
+							@endforeach
+							<!-- Balasan -->
+		  
+						  @endif
+		  
+					@endforeach
+		  
+				  @endif
         </div>
       </div>
     </section>
