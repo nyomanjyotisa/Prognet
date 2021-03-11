@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product_Review extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table='product_reviews';
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
     public function product(){
         return $this->belongsTo('App\Product', 'product_id', 'id');
