@@ -93,6 +93,13 @@
               <img class="img-fluid w-100" src="/uploads/product_images/{{$image->image_name}}" alt="" />
               @break
 			      @endforeach
+            @php
+								$home = new Home;
+                $disc = $home->tampildiskon($products->discount);
+						@endphp
+            @if($disc!=0)
+							<div style="background-color:red;"class="product_extra product_new"><a href="categories.html">-{{$disc}}%</a></div>
+						@endif
               <div class="p_icon">
                 <a href="/product/{{$products->id}}">
                   <i class="ti-eye"></i>
@@ -107,10 +114,19 @@
                 <h4>{{$products->product_name}}</h4>
               </a>
               <div class="mt-3">
-                <span class="mr-4">Rp.{{number_format($products->price)}}</span>
-                <!-- <del>$35.00</del> -->@if ($products->stock == 0)
-									<span class="badge badge-danger mb-2">Out Of Stock!</span>
-									@endif	
+                @php
+									$home = new Home;
+                  $harga = $home->diskon($products->discount,$products->price);
+								@endphp
+                @if ($harga != 0)	 
+                  <del>Rp.{{number_format($products->price)}}</del>  
+									<span class="mr-4">Rp.{{number_format($harga)}}</span>
+								@else
+                  <span class="mr-4">Rp.{{number_format($products->price)}}</span>
+								@endif
+                @if ($products->stock == 0)
+								  <span class="badge badge-danger mb-2">Out Of Stock!</span>
+								@endif	
               </div>
             </div>
           </div>

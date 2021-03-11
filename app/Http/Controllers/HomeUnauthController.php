@@ -15,11 +15,14 @@ class HomeUnauthController extends Controller
     public function index()
     {
         $categories = Category::with('product')->get();
+
         $products = Product::with('product_image','product_category_detail','category','discount')->get();
+
+        
+        
         return view('home', ['product' => $products, 'category' => $categories]);
-        //$products = Product::take(8)->where('products.deleted_at','=', NULL)->get();
-        //return view('home', compact('products'));
     }
+
     public function diskon($discount,$harga){
         if($discount->count()){
             $dsk = $discount->sortByDesc('id');
@@ -37,6 +40,7 @@ class HomeUnauthController extends Controller
             return $harga = 0;
         }
     }
+
     public function tampildiskon($discount){
         if($discount->count()){
             $dsk = $discount->sortByDesc('id');
