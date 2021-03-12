@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="icon" href="img/favicon.png" type="image/png" />
   <title>Eiser ecommerce</title>
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="{{ asset('eiser/css/bootstrap.css') }} " />
   <link rel="stylesheet" href="{{ asset('eiser/vendors/linericon/style.css') }} " />
   <link rel="stylesheet" href="{{ asset('eiser/css/font-awesome.min.css') }} " />
@@ -18,12 +16,15 @@
   <link rel="stylesheet" href="{{ asset('eiser/vendors/nice-select/css/nice-select.css') }} " />
   <link rel="stylesheet" href="{{ asset('eiser/vendors/animate-css/animate.css') }} " />
   <link rel="stylesheet" href="{{ asset('eiser/vendors/jquery-ui/jquery-ui.css') }} " />
-  <!-- main css -->
   <link rel="stylesheet" href="{{ asset('eiser/css/style.css') }} " />
   <link rel="stylesheet" href="{{ asset('eiser/css/responsive.css') }} " />
-
   <link rel="stylesheet" type="text/css" href="{{ asset('user/product.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('user/product_responsive.css')}}">
+  <style>
+    .checked {
+      color: orange;
+    }
+  </style>
 </head>
 
 <body>
@@ -34,8 +35,6 @@
 
     @include('layouts.footer')
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="{{ asset('eiser/js/jquery-3.2.1.min.js') }} "></script>
   <script src="{{ asset('eiser/js/popper.js') }} "></script>
   <script src="{{ asset('eiser/js/bootstrap.min.js') }} "></script>
