@@ -9,12 +9,12 @@
         class="banner_content d-md-flex justify-content-between align-items-center"
       >
         <div class="mb-3 mb-md-0">
-          <h2>Product Checkout</h2>
+          <h2>Transaction Detail</h2>
           <p>Very us move be blessed multiply night</p>
         </div>
         <div class="page_link">
           <a href="index.html">Home</a>
-          <a href="checkout.html">Product Checkout</a>
+          <a href="#">Transaction Detail</a>
         </div>
       </div>
     </div>
