@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="{{ asset('eiser/css/responsive.css') }} " />
   <link rel="stylesheet" type="text/css" href="{{ asset('user/product.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('user/product_responsive.css')}}">
-  <link rel="stylesheet" href="{{ asset('template/css/vertical-layout-light/styleEdit.css') }} ">
   <style>
     .checked {
       color: orange;
