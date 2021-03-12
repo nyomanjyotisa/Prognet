@@ -20,7 +20,6 @@
     <div class="container-fluid page-body-wrapper">
         @include('layouts.adminSidebar')
         @yield('content')
-        @include('layouts.adminFooter')
     </div>
   </div>
 

@@ -19,6 +19,7 @@ Route::get('/product/{id}', 'HomeUnauthController@show');
 Route::view('/checkout', 'user.checkout');
 Route::view('/cart', 'user.cart');
 Route::view('/transaksi', 'user.transaksi');
+Route::view('/detailtransaksi', 'user.detailtransaksi');
 Route::post('/show_categori', 'HomeUnauthController@show_kategori');
 
 Route::prefix('admin')->group(function(){
