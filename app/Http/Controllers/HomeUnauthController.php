@@ -77,7 +77,7 @@ class HomeUnauthController extends Controller
             }])->where('id','=',$request->id)->first();
             $status = 1;
         }
-        $hasil = view('filter', ['kategori' => $kategori, 'status' => $status])->render();
+        $hasil = view('user.filter', ['kategori' => $kategori, 'status' => $status])->render();
         // $hasil = $kategori;
         return response()->json(['success' => 'Produk berhasil dimasukkan dalam cart', 'hasil' => $hasil]);
     }

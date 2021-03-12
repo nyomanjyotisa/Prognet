@@ -39,6 +39,13 @@
                 @foreach ($products->product_image as $jpg)
                   <img src="/uploads/product_images/{{$jpg->image_name}}" alt="" x-show="image === 'image{{$i}}'" style="height: 500px;">
                   @php
+										$home = new Home;
+                    $disc = $home->tampildiskon($products->discount);
+									@endphp
+									@if($disc!=0)
+										<div style="background-color:red;" class="product_extra product_new"><a href="categories.html">-{{$disc}}%</a></div>
+									@endif
+                  @php
                     $i++;
                   @endphp
                 @endforeach
@@ -60,7 +67,17 @@
           <div class="col-lg-5 offset-lg-1">
             <div class="s_product_text">
               <h3>{{$products->product_name}}</h3>
-              <h2>Rp.{{number_format($products->price)}}</h2>
+              @php
+                $home = new Home;
+                $harga = $home->diskon($products->discount,$products->price);
+              @endphp
+              @if ($harga != 0)
+                <del><h4>Rp.{{number_format($products->price)}}</h3></del>
+                <h2>Rp.{{number_format($harga)}}</h2>
+              @else
+                <h2>Rp.{{number_format($products->price)}}</h2>
+              @endif
+              
                 <div class="in_stock_container">
                   <span >Availability    :</span>
                   @if ($products->stock <= 0)
