@@ -68,6 +68,7 @@
 
 <!--================ Inspired Product Area =================-->
 <section class="inspired_product_area section_gap_bottom_custom">
+    
     <div class="container">
     
       <div class="row justify-content-center">
@@ -76,7 +77,31 @@
             <h2><span>Inspired products</span></h2>
             <p>Bring called seed first of third give itself now ment</p>
           </div>
-          
+          <ul class="nav nav-tabs" >
+          <div class="container">
+		<div class="row">
+			<div class="col-sm d-flex justify-content-center">
+				<div class="form-group">
+					<input class="form-check-input radiobtn" name="group100" type="radio" id="radio100" selected checked value="0">
+					<label for="radio100" class="form-check-label dark-grey-text">All</label>
+				</div>
+			</div>
+			  <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
+		  @foreach ($category as $item)
+			  @if ($item->product->count())
+				  <div class="col-sm d-flex justify-content-center">
+					<div class="form-group">
+						  <input class="form-check-input radiobtn" name="group100" type="radio" id="radio10{{$loop->iteration}}" value="{{$item->id}}">
+						  <label for="radio10{{$loop->iteration}}" class="form-check-label dark-grey-text">{{$item->category_name}}</label>
+					  </div>
+				  </div>
+			  @else
+				  <input type="hidden" id="radio10{{$loop->iteration}}" class="radiobtn">
+			  @endif
+		  @endforeach
+		</div>
+	</div>
+          </ul>
         </div>
       </div>
 
@@ -252,23 +277,5 @@
   </section>
   <!--================ End Blog Area =================-->
 
-  <script>
-    jQuery(document).ready(function(e){
-        jQuery('.radiobtn').click(function(e){
-            var index = $('.radiobtn').index(this);
-            console.log(jQuery('#radio10'+index).val());
-            jQuery.ajax({
-                url: "{{url('/show_categori')}}",
-                method: 'post',
-                data: {
-                    _token: $('#signup-token').val(),
-                    id: jQuery('#radio10'+index).val(),
-                },
-                success: function(result){
-                    $('.ganti').html(result.hasil);
-                }
-            });
-        });
-    });
-  </script>
+  
 @endsection

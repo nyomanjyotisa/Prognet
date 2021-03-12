@@ -34,7 +34,4 @@ class Admin extends Authenticatable
      *
      * @var array
      */
-    public function notifications(){
-        return $this->morphMany(AdminNotification::class, 'notifiable' )->orderBy('created_at', 'desc');
-    }
 }

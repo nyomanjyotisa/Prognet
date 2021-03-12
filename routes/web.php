@@ -18,9 +18,13 @@ Route::get('/', 'HomeUnauthController@index');
 Route::get('/product/{id}', 'HomeUnauthController@show');
 Route::view('/checkout', 'user.checkout');
 Route::view('/cart', 'user.cart');
-Route::post('/show_categori', 'HomeController@show_kategori');
+Route::view('/transaksi', 'user.transaksi');
+Route::post('/show_categori', 'HomeUnauthController@show_kategori');
 
 Route::prefix('admin')->group(function(){
-    Route::view('/', 'admin');
+    Route::get('/', function () {
+        return redirect('admin/dashboard');
+    });
+    Route::view('/dashboard', 'admin');
     Route::view('/transaksi', 'admin.transaksi');
 });
