@@ -208,7 +208,12 @@
                 <li>
 							@for ($i = 0; $i < $item->rate; $i++)
 							  
-								<i class="fa fa-star"></i>
+                <i class="fa fa-star checked"></i>
+							  
+							@endfor
+              @for ($i = 0; $i < 5-$item->rate; $i++)
+							  
+                <i class="fa fa-star"></i>
 							  
 							@endfor
               </li>  

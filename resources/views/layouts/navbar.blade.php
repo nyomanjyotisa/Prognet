@@ -13,17 +13,17 @@
             <div class="float-right">
               <ul class="right_side">
                 <li>
-                  <a href="cart.html">
+                  <a href="#">
                     gift card
                   </a>
                 </li>
                 <li>
-                  <a href="tracking.html">
+                  <a href="#">
                     track order
                   </a>
                 </li>
                 <li>
-                  <a href="contact.html">
+                  <a href="#">
                     Contact Us
                   </a>
                 </li>
@@ -37,7 +37,7 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light w-100">
           <!-- Brand and toggle get grouped for better mobile display -->
-          <a class="navbar-brand logo_h" href="index.html">
+          <a class="navbar-brand logo_h" href="/">
             <img src="{{ asset('eiser/img/logo.png') }} " alt="" />
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -59,13 +59,13 @@
                       aria-expanded="false">Shop</a>
                     <ul class="dropdown-menu">
                       <li class="nav-item">
-                        <a class="nav-link" href="category.html">Shop Category</a>
+                        <a class="nav-link" href="#">Shop Category</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="single-product.html">Product Details</a>
+                        <a class="nav-link" href="#">Product Details</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="checkout.html">Product Checkout</a>
+                        <a class="nav-link" href="#">Product Checkout</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="/cart">Shopping Cart</a>
@@ -77,10 +77,10 @@
                       aria-expanded="false">Blog</a>
                     <ul class="dropdown-menu">
                       <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
+                        <a class="nav-link" href="#">Blog</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="single-blog.html">Blog Details</a>
+                        <a class="nav-link" href="#">Blog Details</a>
                       </li>
                     </ul>
                   </li>
@@ -89,15 +89,15 @@
                       aria-expanded="false">Pages</a>
                     <ul class="dropdown-menu">
                       <li class="nav-item">
-                        <a class="nav-link" href="tracking.html">Tracking</a>
+                        <a class="nav-link" href="#">Tracking</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="elements.html">Elements</a>
+                        <a class="nav-link" href="#">Elements</a>
                       </li>
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="#">Contact</a>
                   </li>
                 </ul>
               </div>

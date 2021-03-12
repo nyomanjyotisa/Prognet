@@ -24,6 +24,11 @@
 
   <link rel="stylesheet" type="text/css" href="{{ asset('user/product.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('user/product_responsive.css')}}">
+  <style>
+.checked {
+  color: orange;
+}
+</style>
 </head>
 
 <body>

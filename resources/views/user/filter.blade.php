@@ -32,7 +32,7 @@
               </a>
               <div class="mt-3">
               <div class="row m-auto">
-              <div class="col badge badge-primary mb-2">Rating: {{$products->product_rate}} <i class="fa fa-star"></i></div>
+              <!-- <div class="col badge badge-primary mb-2">Rating: {{$products->product_rate}} <i class="fa fa-star"></i></div> -->
               
               
               @if ($products->stock == 0)
@@ -40,6 +40,7 @@
 								@else
                 <div class="col"></div>
                 @endif
+                <div class="col"></div>
                 </div>
                 @php
 									$home = new Home;
@@ -94,7 +95,7 @@
               </a>
               <div class="mt-3">
               <div class="row m-auto">
-              <div class="col badge badge-primary mb-2">Rating: {{$products->product_rate}} <i class="fa fa-star"></i></div>
+              <!-- <div class="col badge badge-primary mb-2">Rating: {{$products->product_rate}} <i class="fa fa-star"></i></div> -->
               
               
               @if ($products->stock == 0)
@@ -102,6 +103,7 @@
 								@else
                 <div class="col"></div>
                 @endif
+                <div class="col"></div>
                 </div>
                 @php
 									$home = new Home;
