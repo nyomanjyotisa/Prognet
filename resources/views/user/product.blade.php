@@ -37,7 +37,7 @@
                 
                 <div><div>
                 @foreach ($products->product_image as $jpg)
-                  <img src="/uploads/product_images/{{$jpg->image_name}}" alt="" x-show="image === 'image{{$i}}'" style="height: 500px;">
+                  <img class="w-100" src="/uploads/product_images/{{$jpg->image_name}}" alt="" x-show="image === 'image{{$i}}'">
                   @php
 										$home = new Home;
                     $disc = $home->tampildiskon($products->discount);
@@ -49,12 +49,10 @@
                     $i++;
                   @endphp
                 @endforeach
-                </div>
+                </div class="row">
                 @foreach ($products->product_image as $jpg)
-                  <a href="#" @click.prevent="image = 'image{{$j}}'"
-                  
-                  >
-                  <img :class="{ 'border border-info' : image === 'image{{$j}}'}" src="/uploads/product_images/{{$jpg->image_name}}" alt="" style="height: 100px;">
+                  <a class="col-sm" href="#" @click.prevent="image = 'image{{$j}}'">
+                  <img class="w-25" :class="{ 'border border-info' : image === 'image{{$j}}'}" src="/uploads/product_images/{{$jpg->image_name}}" alt="">
                   </a>
                   @php
                     $j++;
@@ -188,7 +186,7 @@
 						<!-- Image column -->
 						<div class="col-sm-2 col-12 mb-3">
 		  
-						  <img src="{{asset('/uploads/avatars/'.$item->user->profile_image)}}" style="height: 100px;" alt="sample image" class="avatar rounded-circle z-depth-1-half">
+						  <img src="{{asset('/uploads/avatars/'.$item->user->profile_image)}}" style="width:100px;height:100px;object-fit:cover;" alt="sample image" class="avatar rounded-circle z-depth-1-half">
 		  
 						</div>
 						<!-- Image column -->
@@ -240,7 +238,7 @@
 							  <!-- Image column -->
 							  <div class="col-sm-2 col-12 mb-3">
 		  
-								<img src="{{asset('/uploads/avatars/'.$balasan->admin->profile_image)}}" style="height: 100px;" alt="sample image" class="avatar rounded-circle z-depth-1-half">
+								<img src="{{asset('/uploads/avatars/'.$balasan->admin->profile_image)}}" style="width:100px;height:100px;object-fit:cover;" alt="sample image" class="avatar rounded-circle z-depth-1-half">
 		  
 							  </div>
 							  <!-- Image column -->
@@ -250,7 +248,7 @@
 		  
 								<a>
 		  
-								  <h5 style="color: #333333" class="user-name font-weight-bold"><span style="margin-right:5px;" class="badge success-color">Admin</span>{{$balasan->admin->name}}</h5>
+								  <h5 style="color: #333333" class="user-name font-weight-bold"><span style="margin-right:5px;" class="badge badge-success">Admin</span>{{$balasan->admin->name}}</h5>
 		  
 								</a>
 								<!-- Rating -->
