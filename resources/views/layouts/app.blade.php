@@ -69,22 +69,6 @@
                 }
             });
         });
-
-        jQuery('#search').keyup(function(e){
-          var isi = $('#search').val();
-          jQuery.ajax({
-                url: "{{url('/show_categori')}}",
-                method: 'post',
-                data: {
-                    _token: $('#signup-token').val(),
-                    id: -1,
-                    cari: isi 
-                },
-                success: function(result){
-                    $('.ganti').html(result.hasil);
-                }
-            });
-        });
     });
   </script>
 </body>
