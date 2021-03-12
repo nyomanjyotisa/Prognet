@@ -139,6 +139,15 @@
                 <h4>{{$products->product_name}}</h4>
               </a>
               <div class="mt-3">
+              <div class="row m-auto">
+              
+              @if ($products->stock == 0)
+              <div class="col badge badge-danger mb-2 mr-4">Out Of Stock!</div>
+								@else
+                <div class="col"></div>
+                @endif
+                <div class="col"></div>
+                </div>	
                 @php
 									$home = new Home;
                   $harga = $home->diskon($products->discount,$products->price);
@@ -149,9 +158,7 @@
 								@else
                   <span class="mr-4">Rp.{{number_format($products->price)}}</span>
 								@endif
-                @if ($products->stock == 0)
-								  <span class="badge badge-danger mb-2">Out Of Stock!</span>
-								@endif	
+                
               </div>
             </div>
           </div>
