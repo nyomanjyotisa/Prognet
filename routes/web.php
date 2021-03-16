@@ -27,5 +27,5 @@ Route::prefix('admin')->group(function(){
         return redirect('admin/dashboard');
     });
     Route::view('/dashboard', 'admin');
-    Route::view('/transaksi', 'admin.transaksi');
+    Route::get('/transaksi', 'TransactionController@adminIndex');
 });
