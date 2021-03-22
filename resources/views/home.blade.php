@@ -3,13 +3,18 @@
 @section('content')
 <!--================Home Banner Area =================-->
 <section class="home_banner_area mb-40">
+  <video autoplay muted loop id="myVideo" style="width:100%;   position: absolute;
+  object-fit: cover; 
+    z-index: 0;">
+    <source src="{{ asset('user/home.webm') }}" type="video/webm">
+  </video>
   <div class="banner_inner d-flex align-items-center">
     <div class="container">
       <div class="banner_content row">
         <div class="col-lg-12">
-          <p class="sub text-uppercase">men Collection</p>
-          <h3><span>Show</span> Your <br />Personal <span>Style</span></h3>
-          <h4>Fowl saw dry which a above together place.</h4>
+          <p class="sub text-uppercase" style="color:black;">men Collection</p>
+          <h3 style="color:#222;"><span>Show</span> Your <br />Personal <span>Style</span></h3>
+          <h4 style="color:black;">Fowl saw dry which a above together place.</h4>
           <a class="main_btn mt-40" href="#">View Collection</a>
         </div>
       </div>
@@ -176,10 +181,10 @@
     <div class="row justify-content-center">
       <div class="offset-lg-4 col-lg-6 text-center">
         <div class="offer_content">
-          <h3 class="text-uppercase mb-40">all men’s collection</h3>
-          <h2 class="text-uppercase">50% off</h2>
-          <a href="#" class="main_btn mb-20 mt-5">Discover Now</a>
-          <p>Limited Time Offer</p>
+          <h3 class="text-uppercase mb-40"></h3>
+          <h2 class="text-uppercase"></h2>
+          <p></p><br><br><br><br><br><br><br><br><br>
+          <br><br><br><br><br><br><br><br><br><br><br>
         </div>
       </div>
     </div>

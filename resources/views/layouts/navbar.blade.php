@@ -36,7 +36,8 @@
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light w-100">
         <a class="navbar-brand logo_h" href="/">
-          <img src="{{ asset('eiser/img/logo.png') }} " alt="" />
+          <!-- <img src="{{ asset('eiser/img/logo.png') }} " alt="" /> -->
+          <h2>Gadget<span style="color:#71cd14">IT</span></h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

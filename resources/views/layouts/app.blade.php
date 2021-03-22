@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="icon" href="img/favicon.png" type="image/png" />
-  <title>Eiser ecommerce</title>
+  <title>GadgetIT</title>
   <link rel="stylesheet" href="{{ asset('eiser/css/bootstrap.css') }} " />
   <link rel="stylesheet" href="{{ asset('eiser/vendors/linericon/style.css') }} " />
   <link rel="stylesheet" href="{{ asset('eiser/css/font-awesome.min.css') }} " />
