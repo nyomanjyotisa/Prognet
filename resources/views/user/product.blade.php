@@ -68,10 +68,10 @@
             $harga = $home->diskon($products->discount,$products->price);
           @endphp
           @if ($harga != 0)
-            <del><h4>Rp.{{number_format($products->price)}}</h3></del>
-            <h2>Rp.{{number_format($harga)}}</h2>
+            <del><h4>Rp{{number_format($products->price)}}</h3></del>
+            <h2>Rp{{number_format($harga)}}</h2>
           @else
-            <h2>Rp.{{number_format($products->price)}}</h2>
+            <h2>Rp{{number_format($products->price)}}</h2>
           @endif
           <div class="in_stock_container">
             <span >Availability    :</span>
@@ -85,13 +85,13 @@
                 <span>In Stock</span> <br>
                 <span style="color:black;">{{$products->stock}} left</span>
               @endif
-                    @endif
+            @endif
           </div>
           <p>{{$products->description}}</p>
           <div class="card_area">
             <div class="product_quantity_container">
               @if (is_null(Auth::user()))
-                @if ($products->stock<1)
+                @if ($products->stock < 1)
                   <button class="btn btn-primary btn-success tombol1" disabled><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Purchase</button>
                   <button class="btn btn-primary btn-rounded tombol1" disabled><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</button>
                 @else
@@ -99,7 +99,7 @@
                   <button class="btn btn-primary btn-rounded tombol1"><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</button>
                 @endif
               @else
-                @if ($products->stock<1)
+                @if ($products->stock < 1)
                   <button class="btn btn-primary btn-success mr-2" class="tombol1" disabled>
                     <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i> Purchase
                   </button>
@@ -167,111 +167,71 @@
     </ul>
     <div class="tab-content" id="myTabContent">
       @if (!$products->product_review->count())
-      <div class="d-flex justify-content-center">    
-        <div class="row mb-5">
-            <p><strong>Belum ada review produk.</strong></p> 
+        <div class="d-flex justify-content-center">    
+          <div class="row mb-5">
+              <p><strong>Belum ada review produk.</strong></p> 
+          </div>
         </div>
-      </div>
       @else
-      @foreach ($products->product_review as $item)
-        <!-- First row -->
-        <div class="row mb-5">
-        
-        <!-- Image column -->
-        <div class="col-sm-2 col-12 mb-3">
-  
-          <img src="{{asset('/uploads/avatars/'.$item->user->profile_image)}}" style="width:100px;height:100px;object-fit:cover;" alt="sample image" class="avatar rounded-circle z-depth-1-half">
-  
-        </div>
-        <!-- Image column -->
-  
-        <!-- Content column -->
-        <div class="col-sm-10 col-12">
-  
-          <a>
-          {{-- @php
-            dd(Auth::user()->id);
-          @endphp --}}
-          <h5 style="color:#333333" class="user-name font-weight-bold">{{$item->user->name}} 
-          </h5>
-  
-          </a>
-  
-          <!-- Rating -->
-          <ul class="rating">
-            <li>
-          @for ($i = 0; $i < $item->rate; $i++)
-            
-            <i class="fa fa-star checked"></i>
-            
-          @endfor
-          @for ($i = 0; $i < 5-$item->rate; $i++)
-            
-            <i class="fa fa-star"></i>
-            
-          @endfor
-          </li>  
-          </ul>
-          <input type="hidden" class="rate{{$loop->iteration-1}}" value="{{$item->rate}}">
-          <input type="hidden" class="content{{$loop->iteration-1}}" value="{{$item->content}}">
-          <input type="hidden" class="review_id{{$loop->iteration-1}}" value="{{$item->id}}">
-          <div class="card-data">
-          <ul class="list-unstyled mb-1">
-            <li class="comment-date font-small grey-text">
-            <i class="fa fa-clock-o"></i> {{$item->created_at}}</li>
-          </ul>
-          </div>
-  
-          <p class="dark-grey-text article">{{$item->content}}</p>
-  
-        </div>
-        <!-- Content column -->
-  
-        </div>
-        <!-- First row -->
-          @if ($item->response->count())
-          <!-- Balasan -->
-          @foreach ($item->response as $balasan)
-          <div class="row mb-5" style="margin-left: 5%">
-            
-            <!-- Image column -->
+        @foreach ($products->product_review as $item)
+          <div class="row mb-5">
             <div class="col-sm-2 col-12 mb-3">
-  
-            <img src="{{asset('/uploads/avatars/'.$balasan->admin->profile_image)}}" style="width:100px;height:100px;object-fit:cover;" alt="sample image" class="avatar rounded-circle z-depth-1-half">
-  
+              <img src="{{asset('/uploads/avatars/'.$item->user->profile_image)}}" style="width:100px;height:100px;object-fit:cover;" alt="sample image" class="avatar rounded-circle z-depth-1-half">
             </div>
-            <!-- Image column -->
-  
-            <!-- Content column -->
             <div class="col-sm-10 col-12">
-  
-            <a>
-  
-              <h5 style="color: #333333" class="user-name font-weight-bold"><span style="margin-right:5px;" class="badge badge-success">Admin</span>{{$balasan->admin->name}}</h5>
-  
-            </a>
-            <!-- Rating -->
-            <div class="card-data">
-              <ul class="list-unstyled mb-1">
-              <li class="comment-date font-small grey-text">
-                <i class="fa fa-clock-o"></i> {{$balasan->created_at}}</li>
+              <a>
+                {{-- @php
+                  dd(Auth::user()->id);
+                @endphp --}}
+                <h5 style="color:#333333" class="user-name font-weight-bold">{{$item->user->name}} 
+                </h5>
+              </a>
+              <ul class="rating">
+                <li>
+                  @for ($i = 0; $i < $item->rate; $i++)
+                    <i class="fa fa-star checked"></i>
+                  @endfor
+                  @for ($i = 0; $i < 5-$item->rate; $i++)
+                    <i class="fa fa-star"></i>
+                  @endfor
+                </li>  
               </ul>
+              <input type="hidden" class="rate{{$loop->iteration-1}}" value="{{$item->rate}}">
+              <input type="hidden" class="content{{$loop->iteration-1}}" value="{{$item->content}}">
+              <input type="hidden" class="review_id{{$loop->iteration-1}}" value="{{$item->id}}">
+              <div class="card-data">
+                <ul class="list-unstyled mb-1">
+                  <li class="comment-date font-small grey-text">
+                    <i class="fa fa-clock-o"></i> {{$item->created_at}}
+                  </li>
+                </ul>
+              </div>
+              <p class="dark-grey-text article">{{$item->content}}</p>
             </div>
-  
-            <p class="dark-grey-text article">{{$balasan->content}}</p>
-  
-            </div>
-            <!-- Content column -->
-  
           </div>
-  
-          @endforeach
-          <!-- Balasan -->
-  
+          @if ($item->response->count())
+            @foreach ($item->response as $balasan)
+              <div class="row mb-5" style="margin-left: 5%">
+                <div class="col-sm-2 col-12 mb-3">
+                  <img src="{{asset('/uploads/avatars/'.$balasan->admin->profile_image)}}" style="width:100px;height:100px;object-fit:cover;" alt="sample image" class="avatar rounded-circle z-depth-1-half">
+                </div>
+                <div class="col-sm-10 col-12">
+                  <a>
+                    <h5 style="color: #333333" class="user-name font-weight-bold"><span style="margin-right:5px;" class="badge badge-success">Admin</span>{{$balasan->admin->name}}</h5>
+                  </a>
+                  <div class="card-data">
+                    <ul class="list-unstyled mb-1">
+                      <li class="comment-date font-small grey-text">
+                        <i class="fa fa-clock-o"></i> {{$balasan->created_at}}
+                      </li>
+                    </ul>
+                  </div>
+                  <p class="dark-grey-text article">{{$balasan->content}}</p>
+                </div>
+              </div>
+            @endforeach
           @endif
-  
-      @endforeach
-  
+        @endforeach
       @endif
     </div>
   </div>
