@@ -40,7 +40,7 @@ class TransactionDetailController extends Controller
     public function membatalkanPesanan(Request $request){
         $transaksi = Transaction::with('transaction_detail')->find($request->id);
         $user = User::find($transaksi->user_id);
-        $user->notify(new UserNotification("<a href ='/transaksi/detail/".$transaksi->id."'>Status Transaksimu dengan id ".$transaksi->id." telah diupdate</a>"));
+        // $user->notify(new UserNotification("<a href ='/transaksi/detail/".$transaksi->id."'>Status Transaksimu dengan id ".$transaksi->id." telah diupdate</a>"));
         if($request->status == 1){
             $transaksi->status = 'canceled';
             $transaksi->save();
@@ -88,7 +88,7 @@ class TransactionDetailController extends Controller
                   "</p>".
                 "</div>".
               "</a>";
-        $admin->notify(new AdminNotification($notif));
+        // $admin->notify(new AdminNotification($notif));
 
         return redirect('/transaksi/detail/'.$request->id);
     }

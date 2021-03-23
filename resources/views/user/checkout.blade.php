@@ -32,11 +32,11 @@
           <form
             action="/beli" method="post"
             class="row contact_form"
-            novalidate="novalidate"
             id="checkout_form" class="checkout_form"
           >
           @csrf
             <div class="col-md-12 form-group p_star">
+            <label>Nama</label>
               <input
                 type="text"
                 class="form-control"
@@ -47,6 +47,7 @@
               />
             </div>
             <div class="col-md-6 form-group p_star">
+            <label>No Telp</label>
               <input
                 type="text"
                 class="form-control"
@@ -56,6 +57,7 @@
               />
             </div>
             <div class="col-md-6 form-group p_star">
+            <label>Email</label>
               <input
                 type="text"
                 class="form-control"
@@ -66,7 +68,10 @@
               />
             </div>
             <div class="col-md-12 form-group p_star">
-                  <select name="province" id="provinsi" class="country_select dropdown_item_select checkout_input cekongkir" require="required">
+            <label>Provinsi</label>
+                  <select 
+                  style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;"
+                  name="province" id="provinsi" class="form-select dropdown_item_select checkout_input cekongkir" require="required">
 										<option>Provinsi</option>
                       @foreach ($provinsi as $prov)
                         <option value="{{$prov->id}}">{{$prov->title}}</option>
@@ -74,11 +79,15 @@
 									</select>
             </div>
             <div class="col-md-12 form-group p_star">
-                  <select name="regency" id="kota" class="country_select dropdown_item_select checkout_input cekongkir" require="required">
+            <label>Kota</label>
+                  <select 
+                  style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;"
+                  name="regency" id="kota" class="form-select country_select dropdown_item_select checkout_input cekongkir" require="required">
 										<option value=""></option>
 									</select>
             </div>
             <div class="col-md-12 form-group p_star">
+            <label>Alamat</label>
               <input
                 type="text"
                 class="form-control"
@@ -88,8 +97,9 @@
               />
             </div>
             <div class="col-md-12 form-group p_star">
-            <select name="courier" id="kurir" class="country_select dropdown_item_select checkout_input cekongkir">
-                                        <option>Kurir*</option>
+            <label>Kurir</label>
+            <select style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;" name="courier" id="kurir" class="form-select country_select dropdown_item_select checkout_input cekongkir">
+                                        <option>Kurir</option>
                                         @foreach ($kurir as $k)
                                             <option value="{{$k->id}}">{{$k->courier}}</option>
                                         @endforeach
@@ -109,8 +119,12 @@
                 </a>
               </li>
               <li>
-                  <div class="order_list_title">Shipping</div>
-                  <div class="order_list_value ml-auto" id="biaya-ongkir"></div>
+                <a href="#"
+                  >Shipping
+                  <span id="biaya-ongkir"></span>
+                </a>
+                  <!-- <div class="order_list_title">Shipping</div>
+                  <div class="order_list_value ml-auto" id="biaya-ongkir"></div> -->
               </li>
               
             </ul>
@@ -118,7 +132,7 @@
               <li>
                 <a href="#"
                   >Total
-                  <span class="middle">Rp.<span id="total-biaya"></span></span>
+                  <span class = "font-weight-bold" id="total-biaya">Rp.</span>
                 </a>
               </li>
             </ul>
@@ -128,18 +142,20 @@
                   <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                   <input type="hidden" name="product_id" value="{{$product_id}}">
 									<input type="hidden" name="qty" value="{{$qty}}">
+            <div class="d-flex justify-content-center mt-5">
+            
             <button type="submit" class="main_btn" id="beli">Proceed to Payment</button>
+            </div>
           </div>
         </div>
         </form>
       </div>
     </div>
-    <div class="container ganti">
-        <section class="section my-5 pb-5">
+    <div class="billing_details my-5">
   
           <!-- Shopping Cart table -->
           <div style="color:#333333;" class="table-responsive">
-            <h1 align="center">Rincian Produk</h1>
+            <h3>Rincian Produk</h2>
 
             <table class="table product-table">
   
@@ -264,7 +280,6 @@
           </div>
           <!-- Shopping Cart table -->
   
-        </section>
         <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
         <input type="hidden" value="{{$weight}}" id="weight">
       </div>
@@ -314,11 +329,10 @@
                     success: function(result){
                         console.log(result.success);
                         console.log(result.hasil["etd"]);
-                        $('#biaya-ongkir').text('Biaya Pengiriman: Rp.'+result.hasil["value"]);
+                        $('#biaya-ongkir').text('Rp.'+result.hasil["value"]);
                         $('#ongkir').val(result.hasil["value"]);
                         $('#biaya-ongkir').append('<input type="hidden" id="biaya-ongkir" value="'+result.hasil["value"]+'">');
-                        $('#biaya-ongkir').append('<li>Estimasi sampai: '+result.hasil["etd"]+'Hari</li>');
-                        $('#total-biaya').text({{$subtotal}}+result.hasil["value"]);
+                        $('#total-biaya').append({{$subtotal}}+result.hasil["value"]);
                         $('#totalbiaya').val({{$subtotal}}+result.hasil["value"]);
                     }
                 });

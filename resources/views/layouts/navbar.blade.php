@@ -82,11 +82,11 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item submenu dropdown">
-                  <a class="nav-link" href="#">Pages</a>
-                </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contact</a>
+                  <a class="nav-link" href="/transaksi/{{Auth::user()->id}}">Transaction</a>
+                </li>
+                <li class="nav-item submenu dropdown">
+                  <a class="nav-link" href="/login">Login</a>
                 </li>
               </ul>
             </div>
