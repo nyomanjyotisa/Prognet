@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+
 class HomeUnauthController extends Controller
 {
     /**
@@ -78,7 +79,6 @@ class HomeUnauthController extends Controller
             $status = 1;
         }
         $hasil = view('user.filter', ['kategori' => $kategori, 'status' => $status])->render();
-        // $hasil = $kategori;
         return response()->json(['success' => 'Produk berhasil dimasukkan dalam cart', 'hasil' => $hasil]);
     }
 }
