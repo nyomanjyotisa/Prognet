@@ -61,3 +61,16 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # Prognet
 
+## Requirement
+1. Cek versi php minimal v7.2.5
+2. Install git https://git-scm.com/
+3. Install github desktop https://desktop.github.com/
+
+
+1. Git clone projek (Apabila sudah ada, `git fetch` lalu `git pull` branch master ke versi terbaru)
+2. Install dependencies `composer install`
+3. Copy .env.example ke .env `cp .env.example .env`
+4. Atur konfigurasi database
+5. Jalankan `php artisan key:generate` untuk membuat kunci enkripsi APP_KEY di .env
+6. Jalankan laravel dengan `php artisan serve`
+7. Login user dengan `jyotisa@gmail.com` dan password `12345678`
