@@ -9,12 +9,13 @@
         class="banner_content d-md-flex justify-content-between align-items-center"
       >
         <div class="mb-3 mb-md-0">
-          <h2>Product Checkout</h2>
+          <h2>Transaction Detail</h2>
           <p>Very us move be blessed multiply night</p>
         </div>
         <div class="page_link">
           <a href="index.html">Home</a>
-          <a href="checkout.html">Product Checkout</a>
+          <a href="checkout.html">Transaction</a>
+          <a href="checkout.html">Transaction Detail</a>
         </div>
       </div>
     </div>
@@ -101,6 +102,7 @@
           <div class="order_box">
             <h2>Your Order</h2>
             <ul class="list">
+            
                 @php
                   if($transaksi->status == 'unverified' && !is_null($transaksi->proof_of_payment))
                   {$transaksi->status = 'Menunggu Verifikasi';}
@@ -110,11 +112,21 @@
                     >Status
                     @if ($transaksi->status == 'success')
                       <span style="color: white;" class="btn-sm btn-success font-weight-bold  mt-1">{{$transaksi->status}}</span>
+                    @elseif ($transaksi->status == 'Menunggu Verifikasi' || $transaksi->status == 'delivered' || $transaksi->status == 'verified')
+                      <span style="color: white;" class="btn-sm btn-warning font-weight-bold  mt-1">{{$transaksi->status}}</span>
                     @else
                       <span style="color: white;" class="btn-sm btn-danger font-weight-bold mt-1">{{$transaksi->status}}</span>
                     @endif
                   </a>
                 </li>
+                @foreach ($transaksi->transaction_detail as $item)
+            <li>
+              <a href="#">
+              {{$item->product->product_name}}<span class="middle">x {{$item->qty}}</span>
+              <span>Rp.{{$item->selling_price}}</span>
+              </a>
+            </li>
+            @endforeach
               <li>
                 <a href="#"
                   >Sub Total
@@ -139,16 +151,20 @@
               <li><a href="">
                 Proof Of Payment
                     @if (is_null($transaksi->proof_of_payment))
-                    <span class = "text-white btn-sm btn-danger font-weight-bold mt-2">Belum diupload</span>
+                    <form action="/transaksi/detail/proof" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <input type="hidden" name="id" value="{{$transaksi->id}}">
+                      <input type="file" name="file" id="form19" accept=".jpeg,.jpg,.png,.gif" onchange="preview_image(event)" required>
+                      <span><button type="submit" class="text-white btn btn-info font-weight-bold  mt-2">Send</button></span>
+                    </form>
                     @else
                     <span class = "text-white btn-sm btn-success font-weight-bold  mt-2">Sudah diupload</span>
                     @endif</a>
                 </li>
                 <li>
                   @if ($transaksi->status == 'unverified' && is_null($transaksi->proof_of_payment))
-                      <br>
-                      <div class="d-flex flex-row bd-highlight mt-3">
-                          <button style="margin-left:35px;" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalContactForm">Upload Bukti Pembayaran</button>
+                      <div class="d-flex justify-content-center mt-5">
+                          <!-- <button style="margin-left:35px;" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalContactForm">Upload Bukti Pembayaran</button> -->
                           <form action="/transaksi/detail/status" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{$transaksi->id}}">
@@ -158,14 +174,14 @@
                       </div>  
                   @else
                       @if ($transaksi->status == 'delivered')
-                      <div class="d-flex flex-row bd-highlight mb-3">
+                      <a href="">
                         <form action="/transaksi/detail/status" method="POST">
                           @csrf
                           <input type="hidden" name="id" value="{{$transaksi->id}}">
                           <input type="hidden" name="status" value="2">
-                          <button style="margin-left:126px;" type="submit" class="btn btn-primary btn-sm">Pesanan Sudah Sampai</button>
+                          <span><button type="submit" class="text-white btn-sm btn-primary font-weight-bold  mt-2">Pesanan Sudah Sampai</button></span>
                         </form>
-                    </div> 
+                      </a>
                       @endif
                   @endif
                       <div class="d-flex justify-content-center mt-5">
@@ -177,108 +193,6 @@
         </div>
       </div>
     </div>
-    <div class="container ganti">
-    <section class="section my-5 pb-5">
-      <!-- Shopping Cart table -->
-      <div style="color:#333333;" class="table-responsive">
-        <h1 align="center">Rincian Produk</h1>
-        <table class="table product-table table-cart-v-1">
-          <!-- Table head -->
-          <thead>
-            <tr>
-              <th></th>
-              <th class="font-weight-bold">
-                <strong>Product</strong>
-              </th>
-              <th></th>
-              <th class="font-weight-bold">
-                <strong>Diskon</strong>
-              </th>
-              <th class="font-weight-bold">
-                <strong>Price</strong>
-              </th>
-              <th class="font-weight-bold">
-
-                <strong>QTY</strong>
-
-              </th>  
-              <th></th>
-              <!-- @if ($transaksi->status == 'success')
-              <th class="font-weight-bold">
-                <strong>Berikan Review</strong>
-              </th> 
-              @endif -->
-            </tr>
-
-          </thead>
-          <!-- Table head -->
-
-          <!-- Table body -->
-          <tbody>
-
-            <!-- First row -->
-            @foreach ($transaksi->transaction_detail as $item)
-            <tr>
-              <th scope="row">
-                  @foreach ($item->product->product_image as $image)
-                  
-                      <img style="width:50px; height:50px;" src="{{asset('/uploads/product_images/'.$image->image_name)}}" alt="" class="img-fluid z-depth-0">
-                      @break
-                  @endforeach
-              </th>
-              <td>
-                <h5 class="mt-3">
-                  <input type="hidden" name="id" id="product_id{{$loop->iteration-1}}" value="{{$item->product->id}}">
-                  <strong>{{$item->product->product_name}}</strong>
-                </h5>
-              </td>
-              <td></td>
-              <td>{{$item->discount}}%</td>
-              <td>Rp.{{$item->selling_price}}</td>
-              <td class="text-center text-md-left">
-
-                <span>{{$item->qty}} </span>
-
-              </td>
-              <td></td>
-              <!-- @if ($transaksi->status == 'success')
-              <td>
-                  @php
-                      $status = 0;
-                  @endphp
-                  @foreach ($review as $pr)
-                       @php
-                           if($item->product->id == $pr->product_id){
-                              $status = $status + 1;
-                           }else{
-                              $status = $status;
-                           }
-                       @endphp
-                  @endforeach
-                  @if ($status != 0)
-                      
-                      <button class="btn btn-sm btn-success tambah-review" data-toggle="modal" data-target="#modalTambahReview" disabled>Review telah diberikan</button>
-                      
-                  @else
-                      <button class="btn btn-sm btn-success tambah-review" data-toggle="modal" data-target="#modalTambahReview">+Tambah Review</button>
-                      
-                  @endif
-              </td>    
-              @endif -->
-            </tr>
-            @endforeach
-
-          </tbody>
-          <!-- Table body -->
-
-        </table>
-
-      </div>
-      <!-- Shopping Cart table -->
-
-    </section>
-  </div>
-  <!-- Main Container -->
 
     <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
       aria-hidden="true">

@@ -82,12 +82,25 @@
                     </li>
                   </ul>
                 </li>
+                @guest
+                <li class="nav-item submenu dropdown">
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
+                @else
                 <li class="nav-item">
                   <a class="nav-link" href="/transaksi/{{Auth::user()->id}}">Transaction</a>
                 </li>
                 <li class="nav-item submenu dropdown">
-                  <a class="nav-link" href="/login">Login</a>
-                </li>
+                    <a class="dropdown-item nav-link" href="{{ url('/user/logout') }}"
+										   onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
+											{{ __('Logout') }}
+										</a>
+                    <form id="logout-form"  action="{{ url('/user/logout') }}" method="GET" style="display: none;">
+											@csrf
+										</form>
+								</li>
+                @endguest
               </ul>
             </div>
 

@@ -32,6 +32,7 @@ Route::get('/home', function () {
     return redirect('/');
 });
 Auth::routes();
+Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 Route::prefix('admin')->group(function(){
     Route::get('/', function () {

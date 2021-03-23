@@ -80,15 +80,6 @@ class TransactionDetailController extends Controller
 
         $transaksi->proof_of_payment = $nama_file;
         $transaksi->save();
-        $admin = Admin::find(1);
-        $notif = "<a class='dropdown-item' href='/admin/transaksi/detail/".$transaksi->id."'>".
-                "<div class='item-content flex-grow'>".
-                  "<h6 class='ellipsis font-weight-normal'>".Auth::user()->name."</h6>".
-                  "<p class='font-weight-light small-text text-muted mb-0'>Bukti Bayar Diupload".
-                  "</p>".
-                "</div>".
-              "</a>";
-        // $admin->notify(new AdminNotification($notif));
 
         return redirect('/transaksi/detail/'.$request->id);
     }

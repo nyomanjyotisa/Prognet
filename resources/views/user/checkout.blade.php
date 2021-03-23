@@ -52,7 +52,7 @@
                 type="text"
                 class="form-control"
                 id="number"
-                name="number"
+                name="no_telp"
                 placeholder="Phone Number"
               />
             </div>
@@ -112,6 +112,38 @@
           <div class="order_box">
             <h2>Your Order</h2>
             <ul class="list">
+            @foreach ($cart as $item)
+              <li>
+                <a href="#"
+                  >
+                  @if (is_null($item->product))
+                    {{$item->product_name}}<span class="middle">x {{$qty}}</span>
+                    @php
+                        $home = new Home;
+                        $hasil = $home->diskon($item->discount,$item->price);
+                    @endphp
+                    @if ($hasil != 0)
+                      <span>Rp.{{$hasil}}</span>
+                    @else
+                      <span>Rp.{{$item->price}}</span>
+                    @endif
+                  @else
+                    {{$item->product->product_name}}<span class="middle">x {{$item->qty}}</span>
+    
+                    @php
+                        $home = new Home;
+                        $hasil = $home->diskon($item->product->discount,$item->product->price);
+                    @endphp
+                    @if ($hasil != 0)
+                      {{$hasil}}
+                    @else
+                      {{$item->product->price}}
+                    @endif  
+                  @endif
+                  </a>
+                </li>
+                @endforeach
+
               <li>
                 <a href="#"
                   >Sub Total
@@ -153,132 +185,7 @@
     </div>
     <div class="billing_details my-5">
   
-          <!-- Shopping Cart table -->
-          <div style="color:#333333;" class="table-responsive">
-            <h3>Rincian Produk</h2>
-
-            <table class="table product-table">
   
-              <!-- Table head -->
-              <thead>
-  
-                <tr>
-  
-                  <th></th>
-  
-                  <th class="font-weight-bold">
-  
-                    <strong>Product</strong>
-  
-                  </th>
-  
-                  <th></th>
-  
-                  <th class="font-weight-bold">
-  
-                    <strong>Price</strong>
-  
-                  </th>
-  
-                  <th class="font-weight-bold">
-  
-                    <strong>QTY</strong>
-  
-                  </th>  
-                  <th></th>
-  
-                </tr>
-  
-              </thead>
-              <!-- Table head -->
-  
-              <!-- Table body -->
-              <tbody>
-  
-                <!-- First row -->
-                @foreach ($cart as $item)
-                <tr>
-                  @if (is_null($item->product))
-                  <th scope="row">
-                    <input type="hidden" class="id_cart{{$loop->iteration-1}}" value="{{$item->id}}">
-                    <input type="hidden" id="user_id" value="{{$item->user_id}}">
-                    <input type="hidden" class="stock{{$loop->iteration-1}}" value="{{$item->stock}}">
-                      @foreach ($item->product_image as $image)
-                          <img style="width:50px; height:50px;" src="{{asset('/uploads/product_images/'.$image->image_name)}}" alt=""
-                          class="img-fluid z-depth-0">
-                          @break
-                      @endforeach
-                  </th>
-  
-                  <td>
-                    <h5 class="mt-3">
-                      <strong>{{$item->product_name}}</strong>
-                    </h5>
-                  </td>
-                  <td></td>
-                  @php
-                      $home = new Home;
-                      $hasil = $home->diskon($item->discount,$item->price);
-                  @endphp
-                  @if ($hasil != 0)
-                         <td> Rp<span class="float-lef grey-text price{{$loop->iteration-1}}">{{$hasil}}</li>
-                          Rp.<span class="float-lef grey-text"><small><s>{{$item->price}}</s></small></span>
-                        </td>
-                  @else
-                          <td>Rp.<span class="float-lef grey-text price{{$loop->iteration-1}}">{{$item->price}}</li></td>
-                  @endif
-                  <td class="text-center text-md-left">
-  
-                    <span class="qty{{$loop->iteration-1}}">{{$qty}} </span>
-  
-                  </td>    
-
-                  @else
-                  <th scope="row">
-                    <input type="hidden" class="id_cart{{$loop->iteration-1}}" value="{{$item->id}}">
-                    <input type="hidden" id="user_id" value="{{$item->user_id}}">
-                    <input type="hidden" class="stock{{$loop->iteration-1}}" value="{{$item->product->stock}}">
-                      @foreach ($item->product->product_image as $image)
-                          <img style="width:50px; height:50px;" src="{{asset('/uploads/product_images/'.$image->image_name)}}" alt="" class="img-fluid z-depth-0">
-                          @break
-                      @endforeach
-                  </th>
-  
-                  <td>
-                    <h5 class="mt-3">
-                      <strong>{{$item->product->product_name}}</strong>
-                    </h5>
-                  </td>
-                  <td></td>
-                  @php
-                      $home = new Home;
-                      $hasil = $home->diskon($item->product->discount,$item->product->price);
-                  @endphp
-                  @if ($hasil != 0)
-                         <td> Rp<span class="float-lef grey-text price{{$loop->iteration-1}}">{{$hasil}}</li>
-                          Rp<span class="float-lef grey-text"><small><s>{{$item->product->price}}</s></small></span></td>
-                  @else
-                          <td>Rp<span class="float-lef grey-text price{{$loop->iteration-1}}">{{$item->product->price}}</li></td>
-                  @endif
-                  <td class="text-center text-md-left">
-                    <p class="text-danger" style="display:none" id="notif{{$loop->iteration-1}}"></p>
-  
-                    <span class="qty{{$loop->iteration-1}}">{{$item->qty}} </span>
-  
-                  </td>    
-
-                  @endif
-  
-                </tr>
-                @endforeach
-  
-              </tbody>
-              <!-- Table body -->
-  
-            </table>
-  
-          </div>
-          <!-- Shopping Cart table -->
   
         <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
         <input type="hidden" value="{{$weight}}" id="weight">

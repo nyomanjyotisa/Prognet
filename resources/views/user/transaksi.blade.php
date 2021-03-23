@@ -52,7 +52,7 @@
                   <strong>Status</strong>
               </th>
               <th>
-                <strong>Opsi</strong>
+                <strong>Aksi</strong>
               </th>
             </tr>
           </thead>
@@ -68,7 +68,7 @@
                         $date2 = new DateTime(date('Y-m-d H:i:s'));
                         $tenggat = $date1->diff($date2);
                     @endphp
-                          <span class="badge badge-danger">{{$tenggat->h}} Jam, {{$tenggat->i}} Menit</span>
+                          <span class="btn-sm btn-warning font-weight-bold">{{$tenggat->h}} Jam, {{$tenggat->i}} Menit</span>
                      @endif
                   </td>               
                   <td>
@@ -87,7 +87,13 @@
                       <strong>Rp.{{$item->total}}</strong>
                   </td>
                   <td>
-                      <strong>{{$item->status}}</strong>
+                    @if ($item->status == 'success')
+                      <span style="color: white;" class="btn-sm btn-success font-weight-bold  mt-1">{{$item->status}}</span>
+                    @elseif ($item->status == 'delivered' || $item->status == 'verified')
+                      <span style="color: white;" class="btn-sm btn-warning font-weight-bold  mt-1">{{$item->status}}</span>
+                    @else
+                      <span style="color: white;" class="btn-sm btn-danger font-weight-bold mt-1">{{$item->status}}</span>
+                    @endif
                   </td>
                   <td>
                     <a href="/transaksi/detail/{{$item->id}}"><strong>Lihat Detail</strong></a>
