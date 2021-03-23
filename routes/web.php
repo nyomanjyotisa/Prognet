@@ -16,11 +16,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeUnauthController@index');
 Route::get('/product/{id}', 'HomeUnauthController@show');
-Route::view('/checkout', 'user.checkout');
+Route::post('/checkout', 'CheckoutController@index');
+Route::get('/kota/{id}', 'CheckoutController@getCities');
+Route::post('/ongkir', 'CheckoutController@submit');
+Route::post('/beli', 'TransactionController@store');
+Route::get('/transaksi/{id}', 'TransactionController@index');
+Route::get('/transaksi/detail/{id}', 'TransactionDetailController@index');
+Route::post('/transaksi/detail/status', 'TransactionDetailController@membatalkanPesanan');
+Route::post('/transaksi/detail/proof', 'TransactionDetailController@uploadProof');
 Route::view('/cart', 'user.cart');
-Route::view('/transaksi', 'user.transaksi');
+Route::get('/transaksi/{id}', 'TransactionController@index');
 Route::view('/detailtransaksi', 'user.detailtransaksi');
 Route::post('/show_categori', 'HomeUnauthController@show_kategori');
+Route::get('/home', function () {
+    return redirect('/');
+});
+Auth::routes();
+Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 Route::prefix('admin')->group(function(){
     Route::get('/', function () {

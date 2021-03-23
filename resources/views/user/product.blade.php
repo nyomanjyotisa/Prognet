@@ -98,9 +98,9 @@
                   <button class="btn btn-primary btn-success tombol1"><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Purchase</button>
                   <button class="btn btn-primary btn-rounded tombol1"><i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Add to cart</button>
                 @endif
-              @else -->
+              @else
                 @if ($products->stock<1)
-                  <button class="btn btn-primary btn-success" class="tombol1" disabled>
+                  <button class="btn btn-primary btn-success mr-2" class="tombol1" disabled>
                     <i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i> Purchase
                   </button>
                   <button class="btn btn-primary btn-rounded" id="ajaxSubmit" disabled>
@@ -119,7 +119,7 @@
                         @endif
                         <input type="hidden" name="weight" value="{{$products->weight}}">
                         <input type="hidden" name="qty" class="qty" value="1" readonly>
-                        <button type="submit" class="btn btn-success" class="tombol1">
+                        <button type="submit" class="btn btn-success mr-2" class="tombol1">
                         <i class="fa fa-cart-plus mr-2" aria-hidden="true"></i> Purchase</button>
                       </form>
                     </td>

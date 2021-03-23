@@ -31,7 +31,7 @@
           <thead>
             <tr>
               <th>
-                <strong>Jatuh Tempo Pembayaran</strong>
+                <strong>Sisa Waktu Bayar</strong>
               </th>
               <th>
                 <strong>ID Transaksi</strong>
@@ -52,38 +52,54 @@
                   <strong>Status</strong>
               </th>
               <th>
-                <strong>Opsi</strong>
+                <strong>Aksi</strong>
               </th>
             </tr>
           </thead>
           <tbody>
             <!-- single transaction -->
-            <tr>
-              <td>
-                <p>Minimalistic shop for</p>
-              </td>
-              <td>
-                <h5>1</h5>
-              </td>
-              <td>
-                  Gang Bima no 7 Buruan
-              </td>
-              <td>
-                <h5>Gianyar</h5>
-              </td>
-              <td>
-                <h5>Bali</h5>
-              </td>
-              <td>
-                  Rp.7000000
-              </td>
-              <td>
-                <h5>inistatus</h5>
-              </td>
-              <td>
-                <h5>detail</h5>
-              </td>
-            </tr>
+            @foreach ($transaksi as $item)
+                <tr> 
+                  <td>
+                    @if ($item->status == 'unverified' & $item->timeout > date('Y-m-d H:i:s'))
+                    @php
+                        date_default_timezone_set("Asia/Makassar");
+                        $date1 = new DateTime($item->timeout);
+                        $date2 = new DateTime(date('Y-m-d H:i:s'));
+                        $tenggat = $date1->diff($date2);
+                    @endphp
+                          <span class="btn-sm btn-warning font-weight-bold">{{$tenggat->h}} Jam, {{$tenggat->i}} Menit</span>
+                     @endif
+                  </td>               
+                  <td>
+                      <strong>{{$item->id}}</strong>
+                  </td>
+                  <td>
+                      <strong>{{$item->address}}</strong>
+                  </td>
+                  <td>
+                      <strong>{{$item->regency}}</strong>
+                  </td>
+                  <td>
+                      <strong>{{$item->province}}</strong>
+                  </td>
+                  <td>
+                      <strong>Rp.{{$item->total}}</strong>
+                  </td>
+                  <td>
+                    @if ($item->status == 'success')
+                      <span style="color: white;" class="btn-sm btn-success font-weight-bold  mt-1">{{$item->status}}</span>
+                    @elseif ($item->status == 'delivered' || $item->status == 'verified')
+                      <span style="color: white;" class="btn-sm btn-warning font-weight-bold  mt-1">{{$item->status}}</span>
+                    @else
+                      <span style="color: white;" class="btn-sm btn-danger font-weight-bold mt-1">{{$item->status}}</span>
+                    @endif
+                  </td>
+                  <td>
+                    <a href="/transaksi/detail/{{$item->id}}"><strong>Lihat Detail</strong></a>
+                  </td>
+                </tr>
+                @endforeach
           </tbody>
         </table>
       </div>

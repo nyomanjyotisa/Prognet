@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class Courier extends Model
 {
     protected $table = 'couriers';
@@ -12,5 +11,4 @@ class Courier extends Model
     protected $fillable = [
     	'courier',
     ];
-
 }

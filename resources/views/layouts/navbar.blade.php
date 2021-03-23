@@ -36,7 +36,8 @@
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light w-100">
         <a class="navbar-brand logo_h" href="/">
-          <img src="{{ asset('eiser/img/logo.png') }} " alt="" />
+          <!-- <img src="{{ asset('eiser/img/logo.png') }} " alt="" /> -->
+          <h2>Gadget<span style="color:#71cd14">IT</span></h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,21 +82,25 @@
                     </li>
                   </ul>
                 </li>
+                @guest
                 <li class="nav-item submenu dropdown">
-                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                    aria-expanded="false">Pages</a>
-                  <ul class="dropdown-menu">
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Tracking</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Elements</a>
-                    </li>
-                  </ul>
+                  <a class="nav-link" href="/login">Login</a>
                 </li>
+                @else
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contact</a>
+                  <a class="nav-link" href="/transaksi/{{Auth::user()->id}}">Transaction</a>
                 </li>
+                <li class="nav-item submenu dropdown">
+                    <a class="dropdown-item nav-link" href="{{ url('/user/logout') }}"
+										   onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
+											{{ __('Logout') }}
+										</a>
+                    <form id="logout-form"  action="{{ url('/user/logout') }}" method="GET" style="display: none;">
+											@csrf
+										</form>
+								</li>
+                @endguest
               </ul>
             </div>
 
@@ -116,12 +121,6 @@
                 <li class="nav-item">
                   <a href="#" class="icons">
                     <i class="ti-user" aria-hidden="true"></i>
-                  </a>
-                </li>
-
-                <li class="nav-item">
-                  <a href="#" class="icons">
-                    <i class="ti-heart" aria-hidden="true"></i>
                   </a>
                 </li>
               </ul>
