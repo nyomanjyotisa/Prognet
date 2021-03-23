@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
-use App\Product_Category_Detail as pcd;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {

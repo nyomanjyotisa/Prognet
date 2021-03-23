@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'HomeUnauthController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/product/{id}', 'HomeUnauthController@show');
 Route::post('/checkout', 'CheckoutController@index');
 Route::get('/kota/{id}', 'CheckoutController@getCities');
@@ -25,12 +26,9 @@ Route::get('/transaksi/detail/{id}', 'TransactionDetailController@index');
 Route::post('/transaksi/detail/status', 'TransactionDetailController@membatalkanPesanan');
 Route::post('/transaksi/detail/proof', 'TransactionDetailController@uploadProof');
 Route::view('/cart', 'user.cart');
-Route::get('/transaksi/{id}', 'TransactionController@index');
 Route::view('/detailtransaksi', 'user.detailtransaksi');
 Route::post('/show_categori', 'HomeUnauthController@show_kategori');
-Route::get('/home', function () {
-    return redirect('/');
-});
+
 Auth::routes();
 Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 

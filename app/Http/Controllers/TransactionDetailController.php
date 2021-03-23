@@ -6,18 +6,13 @@ use Illuminate\Http\Request;
 use App\Transaction;
 use App\Product;
 use App\Product_Review;
-use App\Response;
 use App\User;
-use App\Admin;
-use App\Notifications\AdminNotification;
-use App\Notifications\UserNotification;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionDetailController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware(['auth:admin']);
         $this->middleware(['auth:web']);
     }
 
@@ -40,7 +35,6 @@ class TransactionDetailController extends Controller
     public function membatalkanPesanan(Request $request){
         $transaksi = Transaction::with('transaction_detail')->find($request->id);
         $user = User::find($transaksi->user_id);
-        // $user->notify(new UserNotification("<a href ='/transaksi/detail/".$transaksi->id."'>Status Transaksimu dengan id ".$transaksi->id." telah diupdate</a>"));
         if($request->status == 1){
             $transaksi->status = 'canceled';
             $transaksi->save();
@@ -49,12 +43,9 @@ class TransactionDetailController extends Controller
             $transaksi->status = 'verified';
             $transaksi->save();
 
-            // dd($transaksi->transaction_detail);
             foreach($transaksi->transaction_detail as $item){
                 $produk = Product::find($item->product_id);
-                // dd($produk);
                 $produk->stock = $produk->stock - $item->qty;
-                // dd($produk->stock);
                 $produk->save();
             }
 
@@ -82,19 +73,5 @@ class TransactionDetailController extends Controller
         $transaksi->save();
 
         return redirect('/transaksi/detail/'.$request->id);
-    }
-
-    public function adminIndex($id){
-        $transaksi = Transaction::with(['transaction_detail' => function($q){
-            $q->with(['product' => function($qq){
-                $qq->with('product_image');
-            }]);
-        }, 'courier'])->find($id);
-
-        if(is_null(Auth::guard('admin')->user())){
-            return abort(404);
-        }else{
-            return view('product.admintransaksidetail',['transaksi' => $transaksi]);
-        }
     }
 }
