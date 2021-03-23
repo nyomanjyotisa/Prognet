@@ -157,10 +157,10 @@
                         $harga = $home->diskon($products->discount,$products->price);
                       @endphp
                       @if ($harga != 0)	 
-                        <del>Rp.{{number_format($products->price)}}</del>  
-                        <span class="mr-4">Rp.{{number_format($harga)}}</span>
+                        <del>Rp{{number_format($products->price)}}</del>  <br>
+                        <span class="mr-4">Rp{{number_format($harga)}}</span>
                       @else
-                        <span class="mr-4">Rp.{{number_format($products->price)}}</span>
+                        <span class="mr-4">Rp{{number_format($products->price)}}</span>
                       @endif
                     </div>
                   </div>

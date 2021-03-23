@@ -34,9 +34,9 @@
             class="row contact_form"
             id="checkout_form" class="checkout_form"
           >
-          @csrf
+            @csrf
             <div class="col-md-12 form-group p_star">
-            <label>Nama</label>
+              <label>Nama</label>
               <input
                 type="text"
                 class="form-control"
@@ -47,7 +47,7 @@
               />
             </div>
             <div class="col-md-6 form-group p_star">
-            <label>No Telp</label>
+              <label>No Telp</label>
               <input
                 type="text"
                 class="form-control"
@@ -57,7 +57,7 @@
               />
             </div>
             <div class="col-md-6 form-group p_star">
-            <label>Email</label>
+              <label>Email</label>
               <input
                 type="text"
                 class="form-control"
@@ -68,26 +68,28 @@
               />
             </div>
             <div class="col-md-12 form-group p_star">
-            <label>Provinsi</label>
-                  <select 
+              <label>Provinsi</label>
+                <select 
                   style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;"
-                  name="province" id="provinsi" class="form-select dropdown_item_select checkout_input cekongkir" require="required">
-										<option>Provinsi</option>
-                      @foreach ($provinsi as $prov)
-                        <option value="{{$prov->id}}">{{$prov->title}}</option>
-                      @endforeach
-									</select>
+                  name="province" id="provinsi" class="form-select dropdown_item_select checkout_input cekongkir" require="required"
+                >
+                  <option>Provinsi</option>
+                    @foreach ($provinsi as $prov)
+                      <option value="{{$prov->id}}">{{$prov->title}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-md-12 form-group p_star">
-            <label>Kota</label>
-                  <select 
-                  style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;"
-                  name="regency" id="kota" class="form-select country_select dropdown_item_select checkout_input cekongkir" require="required">
-										<option value=""></option>
-									</select>
+              <label>Kota</label>
+              <select 
+                style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;"
+                name="regency" id="kota" class="form-select country_select dropdown_item_select checkout_input cekongkir" require="required"
+              >
+                <option value=""></option>
+              </select>
             </div>
             <div class="col-md-12 form-group p_star">
-            <label>Alamat</label>
+              <label>Alamat</label>
               <input
                 type="text"
                 class="form-control"
@@ -97,99 +99,87 @@
               />
             </div>
             <div class="col-md-12 form-group p_star">
-            <label>Kurir</label>
-            <select style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;" name="courier" id="kurir" class="form-select country_select dropdown_item_select checkout_input cekongkir">
-                                        <option>Kurir</option>
-                                        @foreach ($kurir as $k)
-                                            <option value="{{$k->id}}">{{$k->courier}}</option>
-                                        @endforeach
-                                    </select>
-
-            </div>
-          
-        </div>
-        <div class="col-lg-6">
-          <div class="order_box">
-            <h2>Your Order</h2>
-            <ul class="list">
-            @foreach ($cart as $item)
-              <li>
-                <a href="#"
-                  >
-                  @if (is_null($item->product))
-                    {{$item->product_name}}<span class="middle">x {{$qty}}</span>
-                    @php
-                        $home = new Home;
-                        $hasil = $home->diskon($item->discount,$item->price);
-                    @endphp
-                    @if ($hasil != 0)
-                      <span>Rp.{{$hasil}}</span>
-                    @else
-                      <span>Rp.{{$item->price}}</span>
-                    @endif
-                  @else
-                    {{$item->product->product_name}}<span class="middle">x {{$item->qty}}</span>
-    
-                    @php
-                        $home = new Home;
-                        $hasil = $home->diskon($item->product->discount,$item->product->price);
-                    @endphp
-                    @if ($hasil != 0)
-                      {{$hasil}}
-                    @else
-                      {{$item->product->price}}
-                    @endif  
-                  @endif
+              <label>Kurir</label>
+              <select style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;" name="courier" id="kurir" class="form-select country_select dropdown_item_select checkout_input cekongkir">
+                <option>Kurir</option>
+                @foreach ($kurir as $k)
+                    <option value="{{$k->id}}">{{$k->courier}}</option>
+                @endforeach
+              </select>
+            </div> 
+          </div>
+          <div class="col-lg-6">
+            <div class="order_box">
+              <h2>Your Order</h2>
+              <ul class="list">
+                @foreach ($cart as $item)
+                  <li>
+                    <a href="#">
+                      @if (is_null($item->product))
+                        {{$item->product_name}}<span class="middle">x {{$qty}}</span>
+                        @php
+                          $home = new Home;
+                          $hasil = $home->diskon($item->discount,$item->price);
+                        @endphp
+                        @if ($hasil != 0)
+                          <span>Rp{{number_format($hasil)}}</span>
+                        @else
+                          <span>Rp{{number_format($item->price)}}</span>
+                        @endif
+                      @else
+                        {{$item->product->product_name}}<span class="middle">x {{$item->qty}}</span>
+                        @php
+                          $home = new Home;
+                          $hasil = $home->diskon($item->product->discount,$item->product->price);
+                        @endphp
+                        @if ($hasil != 0)
+                          {{number_format($hasil)}}
+                        @else
+                          {{number_format($item->product->price)}}
+                        @endif  
+                      @endif
+                    </a>
+                  </li>
+                @endforeach
+                <li>
+                  <a href="#">
+                    Sub Total
+                    <span>Rp{{ number_format($subtotal)}}</span>
                   </a>
                 </li>
-                @endforeach
-
-              <li>
-                <a href="#"
-                  >Sub Total
-                  <span>Rp.{{$subtotal}}</span>
-                </a>
-              </li>
-              <li>
-                <a href="#"
-                  >Shipping
-                  <span id="biaya-ongkir"></span>
-                </a>
-                  <!-- <div class="order_list_title">Shipping</div>
-                  <div class="order_list_value ml-auto" id="biaya-ongkir"></div> -->
-              </li>
-              
-            </ul>
-            <ul class="list list_2">
-              <li>
-                <a href="#"
-                  >Total
-                  <span class = "font-weight-bold" id="total-biaya">Rp.</span>
-                </a>
-              </li>
-            </ul>
-            <input type="hidden" name="sub_total" value="{{$subtotal}}">
-                  <input type="hidden" name="total" id="totalbiaya">
-                  <input type="hidden" name="shipping_cost" id="ongkir">
-                  <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                  <input type="hidden" name="product_id" value="{{$product_id}}">
-									<input type="hidden" name="qty" value="{{$qty}}">
-            <div class="d-flex justify-content-center mt-5">
-            
-            <button type="submit" class="main_btn" id="beli">Proceed to Payment</button>
+                <li>
+                  <a href="#">
+                    Shipping
+                    <span id="biaya-ongkir">Rp</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class="list list_2">
+                <li>
+                  <a href="#">
+                    Total
+                    <span class = "font-weight-bold">Rp<span class = "font-weight-bold" id="total-biaya"></span></span>
+                  </a>
+                </li>
+              </ul>
+              <input type="hidden" name="sub_total" value="{{$subtotal}}">
+              <input type="hidden" name="total" id="totalbiaya">
+              <input type="hidden" name="shipping_cost" id="ongkir">
+              <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+              <input type="hidden" name="product_id" value="{{$product_id}}">
+              <input type="hidden" name="qty" value="{{$qty}}">
+              <div class="d-flex justify-content-center mt-5">
+                <button type="submit" class="main_btn" id="beli">Proceed to Payment</button>
+              </div>
             </div>
           </div>
-        </div>
         </form>
       </div>
     </div>
     <div class="billing_details my-5">
-  
-  
-  
-        <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
-        <input type="hidden" value="{{$weight}}" id="weight">
-      </div>
+      <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
+      <input type="hidden" value="{{$weight}}" id="weight">
+    </div>
   </div>
 </section>
 <!--================End Checkout Area =================-->
@@ -198,6 +188,9 @@
 @section('script')
 <script>
     $(document).ready(function(e){
+        function formatNumber(num) {
+          return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
         $('#provinsi').change(function(e){
             var id_provinsi = $('#provinsi').val()
             if(id_provinsi){
@@ -236,10 +229,10 @@
                     success: function(result){
                         console.log(result.success);
                         console.log(result.hasil["etd"]);
-                        $('#biaya-ongkir').text('Rp.'+result.hasil["value"]);
+                        $('#biaya-ongkir').text('Rp'+ formatNumber(result.hasil["value"]));
                         $('#ongkir').val(result.hasil["value"]);
                         $('#biaya-ongkir').append('<input type="hidden" id="biaya-ongkir" value="'+result.hasil["value"]+'">');
-                        $('#total-biaya').append({{$subtotal}}+result.hasil["value"]);
+                        $('#total-biaya').text( formatNumber({{$subtotal}}+result.hasil["value"]));
                         $('#totalbiaya').val({{$subtotal}}+result.hasil["value"]);
                     }
                 });
