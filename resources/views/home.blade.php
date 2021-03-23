@@ -285,3 +285,25 @@
 <!--================ End Blog Area =================-->
 
 @endsection
+
+@section('script')
+<script>
+    jQuery(document).ready(function(e){
+        jQuery('.radiobtn').click(function(e){
+            var index = $('.radiobtn').index(this);
+            console.log(jQuery('#radio10'+index).val());
+            jQuery.ajax({
+                url: "{{url('/show_categori')}}",
+                method: 'post',
+                data: {
+                    _token: $('#signup-token').val(),
+                    id: jQuery('#radio10'+index).val(),
+                },
+                success: function(result){
+                    $('.ganti').html(result.hasil);
+                }
+            });
+        });
+    });
+  </script>
+@endsection

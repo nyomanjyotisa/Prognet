@@ -36,6 +36,7 @@
     @include('layouts.footer')
 
   <script src="{{ asset('eiser/js/jquery-3.2.1.min.js') }} "></script>
+  <!-- <script src="{{ asset ('assets/User/js/jquery-3.2.1.min.js')}}"></script> -->
   <script src="{{ asset('eiser/js/popper.js') }} "></script>
   <script src="{{ asset('eiser/js/bootstrap.min.js') }} "></script>
   <script src="{{ asset('eiser/js/stellar.js') }} "></script>
@@ -44,32 +45,15 @@
   <script src="{{ asset('eiser/vendors/isotope/imagesloaded.pkgd.min.js') }} "></script>
   <script src="{{ asset('eiser/vendors/isotope/isotope-min.js') }} "></script>
   <script src="{{ asset('eiser/vendors/owl-carousel/owl.carousel.min.js') }} "></script>
-  <script src="{{ asset('eiser/js/jquery.ajaxchimp.min.js') }} "></script>
+  <!-- <script src="{{ asset('eiser/js/jquery.ajaxchimp.min.js') }} "></script> -->
   <script src="{{ asset('eiser/vendors/counter-up/jquery.waypoints.min.js') }} "></script>
   <script src="{{ asset('eiser/vendors/counter-up/jquery.counterup.js') }} "></script>
   <script src="{{ asset('eiser/js/mail-script.js') }} "></script>
   <script src="{{ asset('eiser/js/theme.js') }} "></script>
   <script src="{{ asset('user/product.js')  }}"></script>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
-  <script>
-    jQuery(document).ready(function(e){
-        jQuery('.radiobtn').click(function(e){
-            var index = $('.radiobtn').index(this);
-            console.log(jQuery('#radio10'+index).val());
-            jQuery.ajax({
-                url: "{{url('/show_categori')}}",
-                method: 'post',
-                data: {
-                    _token: $('#signup-token').val(),
-                    id: jQuery('#radio10'+index).val(),
-                },
-                success: function(result){
-                    $('.ganti').html(result.hasil);
-                }
-            });
-        });
-    });
-  </script>
+
+  @yield('script')
 </body>
 
 </html>
