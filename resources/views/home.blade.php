@@ -134,14 +134,6 @@
                       <a href="/product/{{$products->id}}">
                         <i class="ti-eye"></i>
                       </a>
-                      <a href="#">
-                        @guest
-                        @else
-                          <input type="hidden" value="{{$products->id}}" id="product_id">
-                          <input type="hidden" value="{{Auth::user()->id}}" id="user_id">
-                          @endguest
-								        <i class="ti-shopping-cart" id="ajaxSubmit"></i>
-                      </a>
                     </div>
                   </div>
                   <div class="product-btm">
@@ -309,27 +301,6 @@
                 }
             });
         });
-
-        jQuery('#ajaxSubmit').click(function(e){
-            e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            jQuery.ajax({
-                url: "{{url('/tambah_cart')}}",
-                method: 'post',
-                data: {
-                    product_id: jQuery('#product_id').val(),
-                    user_id: jQuery('#user_id').val(),
-                },
-                success: function(result){
-                    jQuery('#jumlahcart').text(result.jumlah);
-                }
-            });
-        });
     });
   </script>
-@endsection+
-// 3l;4156/-9bhcd0iuokjhm
+@endsection
