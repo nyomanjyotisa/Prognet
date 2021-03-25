@@ -26,6 +26,7 @@ Route::get('/transaksi/detail/{id}', 'TransactionDetailController@index');
 Route::post('/transaksi/detail/status', 'TransactionDetailController@membatalkanPesanan');
 Route::post('/transaksi/detail/proof', 'TransactionDetailController@uploadProof');
 Route::view('/cart', 'user.cart');
+Route::post('/tambah_cart', 'CartController@store');
 Route::view('/detailtransaksi', 'user.detailtransaksi');
 Route::post('/show_categori', 'HomeUnauthController@show_kategori');
 
