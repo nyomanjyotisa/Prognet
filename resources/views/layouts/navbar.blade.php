@@ -113,9 +113,11 @@
                 </li>
 
                 <li class="nav-item">
+                  @auth
                   <a href="/cart" class="icons">
-                    <i class="ti-shopping-cart"></i>
+                    <i class="ti-shopping-cart"><span class="badge badge-pill badge-info" id="jumlahcart">{{Auth::user()->cart->where('status','=','notyet')->count()}}</span></i>
                   </a>
+                  @endauth
                 </li>
 
                 <li class="nav-item">
