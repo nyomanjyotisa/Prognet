@@ -64,26 +64,27 @@
                 @endphp
                 @if ($harga != 0)
                   <div class="cart_item_price">
-                    Rp<span class="float-lef grey-text price{{$loop->iteration-1}}">{{number_format($harga)}}</li>
+                    Rp<span class="float-lef grey-text">{{number_format($harga)}}</li>
                     Rp<span class="float-lef grey-text"><small><s>{{number_format($isi->product->price)}}</s></small></span>
+                    <span class="hide float-lef grey-text price{{$loop->iteration-1}}">{{$harga}}</li>
                   </div>
                 @else
                   <div class="cart_item_price">
-                    Rp<span class="float-lef grey-text price{{$loop->iteration-1}}">{{number_format($isi->product->price)}}</li>
+                    Rp<span class="float-lef grey-text">{{number_format($isi->product->price)}}</li>
+                    <span class="hide float-lef grey-text price{{$loop->iteration-1}}">{{$isi->product->price}}</li>
                   </div>
                 @endif
               </td>
               <td>
                 <p class="text-danger" style="display:none" id="notif{{$loop->iteration-1}}"></p>
-                <span class="qty{{$loop->iteration-1}}">{{$isi->qty}} </span>
+                
                 <div class="btn-group radio-group ml-2" data-toggle="buttons">
-                  <label class="btn btn-sm btn-primary btn-rounded tombol-kurang">
-                    <input type="radio" name="options" id="option1">-
-                  </label>
+                  <span class="qty{{$loop->iteration-1}} mr-3">{{$isi->qty}} </span>
+                  <button class="btn btn-sm btn-primary btn-rounded tombol-kurang">-
+                  </button>
         
-                  <label class="btn btn-sm btn-success btn-rounded tombol-tambah" >
-                    <input type="radio" name="options" id="option2">+
-                  </label>
+                  <button class="btn btn-sm btn-success btn-rounded tombol-tambah" >+
+                  </button>
 
                   <button type="button" class="fa fa-trash btn btn-sm btn-danger tombolhapus" data-toggle="tooltip" data-placement="top" title="Remove item">
                 </div>
@@ -113,22 +114,27 @@
                 <h5>Subtotal</h5>
               </td>
               <td>
-                <h5 class="total">Rp{{number_format($total)}}</h5>
+                <span class="font-weight-bold text-dark">Rp</span><span class="totalShow font-weight-bold text-dark">{{number_format($total)}}</span>
+                <h5 class="hide total">{{$total}}</h5>
               </td>
             </tr>
-            <tr class="out_button_area">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <div class="checkout_btn_inner">
-                  <a class="gray_btn" href="#">Continue Shopping</a>
-                  <a class="main_btn" href="#">Proceed to checkout</a>
-                </div>
-              </td>
-            </tr>
+            <tr><td></td>
+              <td></td><td></td>
+              <td></td></tr>
           </tbody>
         </table>
+        <div class="d-flex flex-row-reverse">
+        <div class="checkout_btn_inner">
+          <form action="/checkout" method="POST">
+            @csrf
+              <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+              <input type="hidden" name="sub_total" value="{{$total}}">
+            <button type="submit" class="main_btn">Proceed to checkout
+              <i class="fa fa-angle-right right"></i>
+            </button>
+          </form>
+        </div>
+        <a href="/home" class="gray_btn mx-3">Continue Shopping</a>
       </div>
     </div>
   </div>
@@ -139,8 +145,14 @@
 @section('script')
 <script>
 	jQuery(document).ready(function(e){
+    $(".hide").hide();
+    
+    function formatNumber(num) {
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
 		jQuery('.tombol-tambah').click(function(e){
-		  var index = $(".tombol-tambah").index(this);
+      		  var index = $(".tombol-tambah").index(this);
 		  var jumlah = $(".qty"+index).text();
 		  var jumlah = parseInt(jumlah)+1
 		  $(".qty"+index).text(jumlah);
@@ -155,10 +167,11 @@
 		  }else{
 			var subtotal = parseInt(jumlah)*parseInt(price);
 			console.log('subtotal: ', + subtotal)
-			$(".sub-total"+index).text(subtotal);
+			$(".sub-total"+index).text(formatNumber(subtotal));
 			var total = parseInt($(".total").text());
 			total = total + parseInt(price);
 			$(".total").text(total);
+      $(".totalShow").text(formatNumber(total));
 			$("#notif"+index).css('display','none');
   
 			jQuery.ajax({
@@ -192,10 +205,11 @@
 		  }else{
 			var subtotal = parseInt(jumlah)*parseInt(price);
 			console.log('subtotal: ', + subtotal)
-			$(".sub-total"+index).text(subtotal);   
+			$(".sub-total"+index).text(formatNumber(subtotal));   
 			var total = parseInt($(".total").text());
 			total = total - parseInt(price);
 			$(".total").text(total);
+      $(".totalShow").text(formatNumber(total));
 			$("#notif"+index).css('display','none');
 			jQuery.ajax({
 				url: "{{url('/update_qty')}}",
