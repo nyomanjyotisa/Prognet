@@ -120,8 +120,33 @@
               @foreach ($transaksi->transaction_detail as $item)
               <li>
                 <a href="#">
+                <input type="hidden" name="id" id="product_id{{$loop->iteration-1}}" value="{{$item->product->id}}">
                 {{$item->product->product_name}}<span class="middle">x {{$item->qty}}</span>
                 <span>Rp{{number_format($item->selling_price)}}</span>
+                @if ($transaksi->status == 'success')
+              <div>
+                  @php
+                      $status = 0;
+                  @endphp
+                  @foreach ($review as $pr)
+                       @php
+                           if($item->product->id == $pr->product_id){
+                              $status = $status + 1;
+                           }else{
+                              $status = $status;
+                           }
+                       @endphp
+                  @endforeach
+                  @if ($status != 0)
+                      
+                      <button class="btn btn-sm btn-success tambah-review" data-toggle="modal" data-target="#modalTambahReview" disabled>Review telah diberikan</button>
+                      
+                  @else
+                      <button class="btn btn-sm btn-success tambah-review" data-toggle="modal" data-target="#modalTambahReview">+Tambah Review</button>
+                      
+                  @endif
+              </div>    
+              @endif
                 </a>
               </li>
               @endforeach
@@ -194,6 +219,77 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="modalTambahReview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <!-- Content -->
+      <div class="modal-content">
+
+        <!-- Header -->
+        <div class="modal-header light-blue darken-3 white-text">
+          <h4 class="">Tambah Rating dan Review Produk</h4>
+          <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Body -->
+        <div class="modal-body mb-0">
+            <input type="hidden" name="product_id" id="product_id" value="">
+            <input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">
+            <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
+          <div class="md-form form-sm">
+            Masukkan Rate untuk Produk
+            <select name="rate" id="rate" class="form-control form-control-sm">
+              @for ($i = 0; $i < 6; $i++)
+              <option value="{{$i}}">{{$i}}</option>
+              @endfor
+            </select>
+          </div>
+          <br><br>
+          <div class="md-form form-sm">
+            <textarea type="text" id="content" class="md-textarea form-control form-control-sm" rows="3" required></textarea>
+          </div>
+          <br><br>
+          <div class="text-center mt-1-half">
+            <button type="submit" class="btn btn-info mb-2" id="kirim-review">Send</button>
+          </div>
+        </div>
+      </div>
+      <!-- Content -->
+    </div>
+  </div>
 </section>
 <!--================End Checkout Area =================-->
+@endsection
+
+@section('script')
+<script>
+  $(document).ready(function(e){
+       $(".tambah-review").click(function(e){
+        var index = $(".tambah-review").index(this);
+        var product_id = $("#product_id"+index).val();
+        $("#product_id").val(product_id);
+      });
+
+      $("#kirim-review").click(function(e){
+        jQuery.ajax({
+              url: "{{url('/transaksi/detail/review')}}",
+              method: 'post',
+              data: {
+                  _token: $('#signup-token').val(),
+                  product_id: $("#product_id").val(),
+                  user_id: $("#user_id").val(),
+                  rate: $("#rate").val(),
+                  content: $("#content").val(),
+              },
+              success: function(result){
+                $('#modalTambahReview').modal('hide');
+                alert('Berhasil Menambah Review');
+                location.reload();
+              }
+          });
+      });    
+  });
+</script>
 @endsection
