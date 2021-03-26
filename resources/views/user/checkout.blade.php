@@ -133,9 +133,9 @@
                           $hasil = $home->diskon($item->product->discount,$item->product->price);
                         @endphp
                         @if ($hasil != 0)
-                          {{number_format($hasil)}}
+                        <span>Rp{{number_format($hasil)}}</span>
                         @else
-                          {{number_format($item->product->price)}}
+                        <span>{{number_format($item->product->price)}}</span>
                         @endif  
                       @endif
                     </a>
