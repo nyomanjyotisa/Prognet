@@ -29,9 +29,18 @@
       <div class="row">
         <div class="col-lg-6">
           <h3>Billing Details</h3>
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
           <form
             action="/beli" method="post"
-            class="row contact_form"
+            class="row contact_form needs-validation"
             id="checkout_form" class="checkout_form"
           >
             @csrf
@@ -42,7 +51,6 @@
                 class="form-control"
                 id="name"
                 name="name"
-                placeholder="Name"
                 value="{{Auth::user()->name}}"
               />
             </div>
@@ -54,7 +62,11 @@
                 id="number"
                 name="no_telp"
                 placeholder="Phone Number"
+                required
               />
+              <div class="invalid-feedback">
+                required!
+              </div>
             </div>
             <div class="col-md-6 form-group p_star">
               <label>Email</label>
@@ -63,7 +75,6 @@
                 class="form-control"
                 id="email"
                 name="compemailany"
-                placeholder="Email Address"
                 value="{{Auth::user()->email}}"
               />
             </div>
@@ -71,22 +82,28 @@
               <label>Provinsi</label>
                 <select 
                   style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;"
-                  name="province" id="provinsi" class="form-select dropdown_item_select checkout_input cekongkir" require="required"
+                  name="province" id="provinsi" class="form-select dropdown_item_select checkout_input cekongkir" required
                 >
-                  <option>Provinsi</option>
+                  <option></option>
                     @foreach ($provinsi as $prov)
                       <option value="{{$prov->id}}">{{$prov->title}}</option>
                     @endforeach
                 </select>
+                <div class="invalid-feedback">
+      Please select a valid state.
+    </div>
             </div>
             <div class="col-md-12 form-group p_star">
               <label>Kota</label>
               <select 
                 style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;"
-                name="regency" id="kota" class="form-select country_select dropdown_item_select checkout_input cekongkir" require="required"
+                name="regency" id="kota" class="form-select country_select dropdown_item_select checkout_input cekongkir" required
               >
                 <option value=""></option>
               </select>
+              <div class="invalid-feedback">
+      Please select a valid state.
+    </div>
             </div>
             <div class="col-md-12 form-group p_star">
               <label>Alamat</label>
@@ -95,17 +112,22 @@
                 class="form-control"
                 id="address"
                 name="address"
-                placeholder="Address"
-              />
+                placeholder="Address"required>
+    <div class="invalid-feedback">
+      Please provide a valid city.
+    </div>
             </div>
             <div class="col-md-12 form-group p_star">
               <label>Kurir</label>
-              <select style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;" name="courier" id="kurir" class="form-select country_select dropdown_item_select checkout_input cekongkir">
-                <option>Kurir</option>
+              <select style="border: 1px solid #C8C8C8; border-radius:3px; padding:5px 7px; color: #707070; font-size: 16px;" name="courier" id="kurir" class="form-select country_select dropdown_item_select checkout_input cekongkir" required>
+                <option></option>
                 @foreach ($kurir as $k)
                     <option value="{{$k->id}}">{{$k->courier}}</option>
                 @endforeach
               </select>
+              <div class="invalid-feedback">
+      Please select a valid state.
+    </div>
             </div> 
           </div>
           <div class="col-lg-6">

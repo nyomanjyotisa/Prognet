@@ -122,7 +122,7 @@
                 <a href="#">
                 <input type="hidden" name="id" id="product_id{{$loop->iteration-1}}" value="{{$item->product->id}}">
                 {{$item->product->product_name}}<span class="middle">x {{$item->qty}}</span>
-                <span>Rp{{number_format($item->selling_price)}}</span>
+                <span>Rp{{number_format($item->selling_price*(100-$item->discount)/100)}}</span>
                 @if ($transaksi->status == 'success')
               <div>
                   @php
