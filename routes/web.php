@@ -29,7 +29,6 @@ Route::post('/transaksi/detail/review', 'ProductReviewController@store');
 Route::get('/cart', 'CartController@show');
 Route::post('/tambah_cart', 'CartController@store');
 Route::post('/update_qty', 'CartController@update');
-Route::view('/detailtransaksi', 'user.detailtransaksi');
 Route::post('/show_categori', 'HomeUnauthController@show_kategori');
 
 Auth::routes();

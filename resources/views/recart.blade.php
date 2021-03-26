@@ -1,33 +1,7 @@
-@extends('layouts.app')
-
-@section('content')
 @php
 	$total = 0;
-@endphp 
-<!--================Home Banner Area =================-->
-<section class="banner_area">
-  <div class="banner_inner d-flex align-items-center">
-    <div class="container">
-      <div
-        class="banner_content d-md-flex justify-content-between align-items-center"
-      >
-        <div class="mb-3 mb-md-0">
-          <h2>Cart</h2>
-          <p>Very us move be blessed multiply night</p>
-        </div>
-        <div class="page_link">
-          <a href="index.html">Home</a>
-          <a href="cart.html">Cart</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!--================End Home Banner Area =================-->
-
-<!--================Cart Area =================-->
-<section class="cart_area ganti">
-  <div class="container">
+@endphp  
+<div class="container">
     <div class="cart_inner">
       <div class="table-responsive">
         <table class="table">
@@ -41,7 +15,7 @@
           </thead>
           <tbody>
             <!-- single product -->
-            @forelse ($cart as $isi)
+            @forelse ($carts as $isi)
             <tr>
               <td>
                 <div class="media">
@@ -104,11 +78,7 @@
               </td>
             </tr>
             @empty
-            <tr>
-            <td colspan="4" style="text-align:center">
-				      <p class="fa fa-shopping-cart m-auto" style="font-size:50px;"><br><br>Cart Kosong!</p>
-              </td>
-            </tr>
+				      <p class="fa fa-shopping-cart" style="font-size:50px;margin-left:495px;" align="center"><br><br>Cart Kosong!</p>
             @endforelse
             <!-- end single product -->
             <tr>
@@ -143,12 +113,8 @@
       </div>
     </div>
   </div>
-</section>
-<!--================End Cart Area =================-->
-@endsection
-
-@section('script')
-<script>
+		<script src="{{ asset ('assets/User/js/jquery-3.2.1.min.js')}}"></script>
+		<script>
 	jQuery(document).ready(function(e){
     $(".hide").hide();
     
@@ -254,4 +220,3 @@
 		});
 	});
   </script>
-@endsection
