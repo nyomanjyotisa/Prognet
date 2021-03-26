@@ -27,7 +27,7 @@ class CheckoutController extends Controller
             $weight = 0;
         
             foreach($cart as $item){
-               $weight = $weight + $item->product->weight;
+               $weight = $weight + ($item->product->weight * $item->qty);
             }
             
             $qty = 0;
