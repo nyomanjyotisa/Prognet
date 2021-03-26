@@ -95,6 +95,12 @@ class TransactionController extends Controller
             return abort(404);
         }else{
             $transaksi = Transaction::orderBy('id', 'DESC')->where('user_id','=',$id)->get();
+            foreach($transaksi as $item){
+                if($item->timeout < date('Y-m-d H:i:s') & $item->status == 'unverified'){
+                    $item->status = 'expired';
+                    $item->save();
+                }
+            }
             return view('user.transaksi', ['transaksi' => $transaksi]);
         }
     }

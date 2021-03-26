@@ -110,7 +110,7 @@
                   Status
                   @if ($transaksi->status == 'success')
                     <span style="color: white;" class="btn-sm btn-success font-weight-bold  mt-1">{{$transaksi->status}}</span>
-                  @elseif ($transaksi->status == 'Menunggu Verifikasi' || $transaksi->status == 'delivered' || $transaksi->status == 'verified')
+                  @elseif ($transaksi->status == 'Menunggu Verifikasi' || $transaksi->status == 'delivered' || $transaksi->status == 'verified' || $transaksi->status == 'in delivery')
                     <span style="color: white;" class="btn-sm btn-warning font-weight-bold  mt-1">{{$transaksi->status}}</span>
                   @else
                     <span style="color: white;" class="btn-sm btn-danger font-weight-bold mt-1">{{$transaksi->status}}</span>
@@ -159,7 +159,7 @@
               <li>
                 <a href="#"
                   >Shipping
-                  <span>Rp{{$transaksi->shipping_cost}}</span>
+                  <span>Rp{{number_format($transaksi->shipping_cost)}}</span>
                 </a>
               </li>
             </ul>

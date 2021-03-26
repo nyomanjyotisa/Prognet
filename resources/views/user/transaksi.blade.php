@@ -88,7 +88,7 @@
                 <td>
                   @if ($item->status == 'success')
                     <span style="color: white;" class="btn-sm btn-success font-weight-bold  mt-1">{{$item->status}}</span>
-                  @elseif ($item->status == 'delivered' || $item->status == 'verified')
+                  @elseif ($item->status == 'delivered' || $item->status == 'verified' || $item->status == 'in delivery')
                     <span style="color: white;" class="btn-sm btn-warning font-weight-bold  mt-1">{{$item->status}}</span>
                   @else
                     <span style="color: white;" class="btn-sm btn-danger font-weight-bold mt-1">{{$item->status}}</span>
