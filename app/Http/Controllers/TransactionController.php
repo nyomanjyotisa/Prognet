@@ -107,6 +107,6 @@ class TransactionController extends Controller
 
     public function adminIndex(){
         $transaksi = Transaction::all();
-        return view('product.admintransaksi', ['transaksi' => $transaksi]);
+        return view('admin.transaksi', ['transaksi' => $transaksi]);
     }
 }
