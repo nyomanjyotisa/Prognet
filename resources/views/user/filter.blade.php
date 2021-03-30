@@ -21,9 +21,6 @@
                   <a href="/product/{{$products->id}}">
                     <i class="ti-eye"></i>
                   </a>
-                  <a href="#">
-                    <i class="ti-shopping-cart"></i>
-                  </a>
                 </div>
               </div>
               <div class="product-btm">
@@ -80,9 +77,6 @@
                 <div class="p_icon">
                   <a href="/product/{{$products->id}}">
                     <i class="ti-eye"></i>
-                  </a>
-                  <a href="#">
-                    <i class="ti-shopping-cart"></i>
                   </a>
                 </div>
               </div>
