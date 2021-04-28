@@ -228,7 +228,7 @@
 
         <!-- Header -->
         <div class="modal-header light-blue darken-3 white-text">
-          <h4 class="mb-2" id="product_name" name="product_name">Tambah Rating dan Review Produk </h4>
+          <h4 class="mb-2" id="product_name" name="product_name"></h4>
           <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -272,7 +272,7 @@
        $(".tambah-review").click(function(e){
         var index = $(".tambah-review").index(this);
         var product_name = $("#product_name"+index).val();
-        $("#product_name").append(product_name);
+        $("#product_name").text('Tambah Review ' + product_name);
 
         var product_id = $("#product_id"+index).val();
         $("#product_id").val(product_id);
