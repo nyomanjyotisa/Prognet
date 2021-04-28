@@ -121,6 +121,7 @@
               <li>
                 <a href="#">
                 <input type="hidden" name="id" id="product_id{{$loop->iteration-1}}" value="{{$item->product->id}}">
+                <input type="hidden" name="name" id="product_name{{$loop->iteration-1}}" value="{{$item->product->product_name}}">
                 {{$item->product->product_name}}<span class="middle">x {{$item->qty}}</span>
                 <span>Rp{{number_format($item->selling_price*(100-$item->discount)/100)}}</span>
                 @if ($transaksi->status == 'success')
@@ -142,7 +143,7 @@
                       <button class="btn btn-sm btn-success tambah-review" data-toggle="modal" data-target="#modalTambahReview" disabled>Review telah diberikan</button>
                       
                   @else
-                      <button class="btn btn-sm btn-success tambah-review" data-toggle="modal" data-target="#modalTambahReview">+Tambah Review</button>
+                      <button class="btn btn-sm btn-success tambah-review" data-toggle="modal" data-target="#modalTambahReview" data-produk="{{$item->product->product_name}}">+Tambah Review</button>
                       
                   @endif
               </div>    
@@ -227,11 +228,13 @@
 
         <!-- Header -->
         <div class="modal-header light-blue darken-3 white-text">
-          <h4 class="">Tambah Rating dan Review Produk</h4>
+          <h4 class="mb-2" id="product_name" name="product_name">Tambah Rating dan Review Produk </h4>
           <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
+        
 
         <!-- Body -->
         <div class="modal-body mb-0">
@@ -240,7 +243,7 @@
             <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
           <div class="md-form form-sm">
             Masukkan Rate untuk Produk
-            <select name="rate" id="rate" class="form-control form-control-sm">
+            <select name="rate" id="rate" class="form-control form-control-sm text-dark">
               @for ($i = 0; $i < 6; $i++)
               <option value="{{$i}}">{{$i}}</option>
               @endfor
@@ -248,7 +251,7 @@
           </div>
           <br><br>
           <div class="md-form form-sm">
-            <textarea type="text" id="content" class="md-textarea form-control form-control-sm" rows="3" required></textarea>
+            <textarea type="text" id="content" class="md-textarea form-control form-control-sm text-dark" rows="3" required></textarea>
           </div>
           <br><br>
           <div class="text-center mt-1-half">
@@ -268,6 +271,9 @@
   $(document).ready(function(e){
        $(".tambah-review").click(function(e){
         var index = $(".tambah-review").index(this);
+        var product_name = $("#product_name"+index).val();
+        $("#product_name").append(product_name);
+
         var product_id = $("#product_id"+index).val();
         $("#product_id").val(product_id);
       });
