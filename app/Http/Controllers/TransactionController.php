@@ -16,7 +16,7 @@ class TransactionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:web']);
+        $this->middleware('auth');
     }
 
     public function store(Request $request){
@@ -103,10 +103,5 @@ class TransactionController extends Controller
             }
             return view('user.transaksi', ['transaksi' => $transaksi]);
         }
-    }
-
-    public function adminIndex(){
-        $transaksi = Transaction::all();
-        return view('admin.transaksi', ['transaksi' => $transaksi]);
     }
 }

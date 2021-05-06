@@ -20,6 +20,18 @@
       </li>
     </ul>
     <ul class="navbar-nav navbar-nav-right">
+    <li>
+      <li class="nav-item submenu dropdown">
+        <a class="dropdown-item nav-link"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+          Logout
+        </a>
+        <form id="logout-form"  action="/admin/logout" method="GET" style="display: none;">
+          @csrf
+        </form>
+      </li>
+    </li>
       <li class="nav-item dropdown">
         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
           <i class="icon-bell mx-0"></i>
