@@ -57,27 +57,3 @@ Route::prefix('admin')->group(function(){
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset')->name('admin.password.update');
 });
-
-
-//Admin Route
-    //Route::prefix('admin')->group(function(){
-    //Route::get('/login', 'Auth\AdminLoginController@showLoginform')->middleware('guest')->name('admin.login');
-    //Route::post('/login', 'Auth\AdminLoginController@login')->middleware('guest')->name('admin.login.submit');
-    //Route::get('/', 'AdminController@index')->name('admin.dashboard');
-    //Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
-    //Route::resource('/products', 'AdminProductController');
-    //Route::resource('/categories', 'AdminCategoryController');
-    //Route::resource('/couriers', 'AdminCourierController');
-    //Route::get('/transaksi', 'TransactionController@adminIndex');
-    //Route::post('/transaksi/sort', 'TransactionController@sort');
-    //Route::get('/transaksi/detail/{id}', 'TransactionDetailController@adminIndex');
-    //Route::get('/marknotifadmin', 'AdminController@markReadAdmin');
-//});
-
-Route::post('/beli', 'TransactionController@store');
-Route::get('/transaksi/{id}', 'TransactionController@index');
-Route::get('/transaksi/detail/{id}', 'TransactionDetailController@index');
-Route::post('/transaksi/detail/status', 'TransactionDetailController@membatalkanPesanan');
-Route::post('/transaksi/detail/proof', 'TransactionDetailController@uploadProof');
-Route::post('/transaksi/detail/review', 'ProductReviewController@store');
-Route::post('/transaksi/detail/review', 'ProductReviewController@store');
