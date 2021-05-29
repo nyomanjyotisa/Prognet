@@ -47,4 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function product_cart(){
         return $this->belongsToMany('App\Product', 'carts', 'user_id', 'product_id')->withPivot('id');
     }
+    public function notifications(){
+        return $this->morphMany(UserNotification::class, 'notifiable' )->orderBy('created_at', 'desc');
+    }
 }

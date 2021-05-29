@@ -41,6 +41,10 @@ Route::prefix('admin')->group(function(){
     Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
     Route::get('/transaksi', 'AdminController@transaksi');
 
+    Route::post('/transaksi/sort', 'TransactionController@sort');
+    Route::get('/transaksi/detail/{id}', 'TransactionDetailController@adminIndex');
+    Route::get('/marknotifadmin', 'AdminController@markReadAdmin');
+
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 
@@ -57,3 +61,19 @@ Route::prefix('admin')->group(function(){
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset')->name('admin.password.update');
 });
+
+Route::get('/marknotif', 'UsersController@marknotif');
+
+Route::resource('response', 'ResponseController');
+Route::post('/admin/transaksi/sort', 'TransactionController@sort');
+Route::post('/report-bulan', 'TransactionController@filterBulan');
+Route::post('/report-tahun', 'TransactionController@filterTahun');
+Route::post('/grafik', 'TransactionController@grafik');
+
+Route::post('/beli', 'TransactionController@store');
+Route::get('/transaksi/{id}', 'TransactionController@index');
+Route::get('/transaksi/detail/{id}', 'TransactionDetailController@index');
+Route::post('/transaksi/detail/status', 'TransactionDetailController@membatalkanPesanan');
+Route::post('/transaksi/detail/proof', 'TransactionDetailController@uploadProof');
+Route::post('/transaksi/detail/review', 'ProductReviewController@store');
+Route::post('/transaksi/detail/review', 'ProductReviewController@store');
