@@ -3,7 +3,7 @@
 @section('content')
 <!--================Home Banner Area =================-->
 <section class="home_banner_area mb-40">
-  <video autoplay muted loop id="myVideo" style="width: 98.9vw; height:90vh; position: absolute;
+  <video autoplay muted loop id="myVideo" style="width:100%;   position: absolute;
   object-fit: cover; 
     z-index: 0;">
     <source src="{{ asset('user/home.webm') }}" type="video/webm">
@@ -24,7 +24,7 @@
 <!--================End Home Banner Area =================-->
 
 <!-- Start feature Area -->
-<section class="feature-area section_gap_bottom_custom mt-5 pt-5">
+<section class="feature-area section_gap_bottom_custom">
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-6">
