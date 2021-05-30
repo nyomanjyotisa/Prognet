@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 use App\Transaction;
 use App\Product;
 use App\Product_Review;
+use App\Response;
 use App\User;
+use App\Admin;
+use App\Notifications\AdminNotification;
+use App\Notifications\UserNotification;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionDetailController extends Controller
@@ -35,6 +39,7 @@ class TransactionDetailController extends Controller
     public function membatalkanPesanan(Request $request){
         $transaksi = Transaction::with('transaction_detail')->find($request->id);
         $user = User::find($transaksi->user_id);
+        $user->notify(new UserNotification("<a href ='/transaksi/detail/".$transaksi->id."'>Status Transaksimu dengan id ".$transaksi->id." telah diupdate</a>"));
         if($request->status == 1){
             $transaksi->status = 'canceled';
             $transaksi->save();
@@ -72,6 +77,30 @@ class TransactionDetailController extends Controller
         $transaksi->proof_of_payment = $nama_file;
         $transaksi->save();
 
+        $admin = Admin::find(1);
+        $notif = "<a class='dropdown-item' href='/admin/transaksi/detail/".$transaksi->id."'>".
+                "<div class='item-content flex-grow'>".
+                  "<h6 class='ellipsis font-weight-normal'>".Auth::user()->name."</h6>".
+                  "<p class='font-weight-light small-text text-muted mb-0'>Bukti Bayar Diupload".
+                  "</p>".
+                "</div>".
+              "</a>";
+        $admin->notify(new AdminNotification($notif));
+
         return redirect('/transaksi/detail/'.$request->id);
+    }
+
+    public function adminIndex($id){
+        $transaksi = Transaction::with(['transaction_detail' => function($q){
+            $q->with(['product' => function($qq){
+                $qq->with('product_image');
+            }]);
+        }, 'courier'])->find($id);
+
+        if(is_null(Auth::guard('admin')->user())){
+            return abort(404);
+        }else{
+            return view('product.admintransaksidetail',['transaksi' => $transaksi]);
+        }
     }
 }
