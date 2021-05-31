@@ -197,15 +197,17 @@
                                         <div  class="d-flex justify-content-center">
                                           <a href="/admin/transaksi"><button class="btn btn-warning btn-rounded">Back</button></a>
                                         </div>
-
-                                        <div class="d-flex justify-content-center">
-                                          <form action="/admin/transaksi/detail/status" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{$transaksi->id}}">
-                                            <input type="hidden" name="status" value="1">
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apa yakin ingin membatalkan pesanan ini?')">Batalkan Pesanan</button>
-                                          </form>
-                                        </div>   
+                                        @if ($transaksi->status == 'unverified')
+                                          <div class="d-flex justify-content-center mt-5">
+                                            <form action="/admin/transaksi/detail/status" method="POST">
+                                              @csrf
+                                              <input type="hidden" name="id" value="{{$transaksi->id}}">
+                                              <input type="hidden" name="status" value="1">
+                                              <button style="margin-top:10px;" type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apa yakin ingin membatalkan pesanan ini?')">Batalkan Pesanan</button>
+                                            </form>
+                                          </div>  
+                                        @else
+                                        @endif
                             </li>
                           </ul>
                         </div>
