@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Product_Review;
 use App\Product;
 use App\Admin;
-// use App\Notifications\AdminNotification;
+use App\Notifications\AdminNotification;
 
 class ProductReviewController extends Controller
 {
@@ -41,7 +41,7 @@ class ProductReviewController extends Controller
                   "</p>".
                 "</div>".
               "</a>";
-        // $admin->notify(new AdminNotification($notif));
+        $admin->notify(new AdminNotification($notif));
     }
 
     public function update(Request $request){

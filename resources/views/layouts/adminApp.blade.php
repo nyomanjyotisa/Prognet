@@ -17,41 +17,21 @@
 </head>
 <body>
   <div class="container-scroller"> 
-    @include('layouts.adminNavbar')
-    <div class="container-fluid page-body-wrapper">
-        @include('layouts.adminSidebar')
-        @yield('content')
-    </div>
+    @include('layouts.adminnavbar')
   </div>
 
-  <li class="dropdown head-dpdn">
-										<?php 
-                  								$id = 1;
-                  								$admin = App\Admin::find(1);
-                  								$notif_count = $admin->unreadNotifications->count();
-                  								$notifications = DB::table('admin_notifications')->where('notifiable_id',$id)->where('read_at',NULL)->orderBy('created_at','desc')->get();
-                						?>
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">{{$notif_count}}</span></a>
-										<ul class="dropdown-menu">
-											<li>
-												<div class="notification_header">
-													<h3>You have {{$notif_count}} new notification</h3>
-												</div>
-											</li>
-											<li>
-												@foreach($notifications as $notif)
-													{!!$notif->data!!}
-											  	@endforeach
-											</li>
-											 <li>
-												<div class="notification_bottom">
-													<a class="btn btn-block" href="/admin/marknotifadmin">Mark as Read</a>
-												</div> 
-											</li>
-										</ul>
-									</li>	
-									
-							<!--notification menu end -->
+  <script src="{{ asset('template/vendors/js/vendor.bundle.base.js') }} "></script>
+  <script src="{{ asset('template/vendors/chart.js/Chart.min.js') }} "></script>
+  <script src="{{ asset('template/vendors/datatables.net/jquery.dataTables.js') }} "></script>
+  <script src="{{ asset('template/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }} "></script>
+  <script src="{{ asset('template/js/dataTables.select.min.js') }} "></script>
+  <script src="{{ asset('template/js/off-canvas.js') }} "></script>
+  <script src="{{ asset('template/js/hoverable-collapse.js') }} "></script>
+  <script src="{{ asset('template/js/template.js') }} "></script>
+  <script src="{{ asset('template/js/settings.js') }} "></script>
+  <script src="{{ asset('template/js/todolist.js') }} "></script>
+  <script src="{{ asset('template/js/dashboard.js') }} "></script>
+  <script src="{{ asset('template/js/Chart.roundedBarCharts.js') }} "></script>
 
 
 <!-- script-for sticky-nav -->
@@ -70,8 +50,26 @@
 		});
 		</script>
 		<!-- /script-for sticky-nav -->
+<!--inner block start here-->
+<div class="chit-chat-layer1"></div>
+<div class="inner-block">
+<!--market updates updates-->
+<div class="container-fluid page-body-wrapper">
+        @include('layouts.adminSidebar')
+	@yield('content')
+</div>	
+</div>
 
-
+<!--market updates end here-->
+<!--mainpage chit-chating-->
+<div class="chit-chat-layer1"></div>
+<!--main page chit chating end here-->
+<!--main page chart start here-->
+</div>
+<!--inner block end here-->
+<!--copy rights start here-->
+<!--COPY rights end here-->
+</div>
 <!--scrolling js-->
 <script src="{{ asset('assets/Admin/js/jquery.nicescroll.js')}}"></script>
 <script src="{{ asset('assets/Admin/js/scripts.js')}}"></script>
@@ -325,21 +323,8 @@ $('#tombol').click(function(e){
 
       });
     </script>
-
-
-
-  <script src="{{ asset('template/vendors/js/vendor.bundle.base.js') }} "></script>
-  <script src="{{ asset('template/vendors/chart.js/Chart.min.js') }} "></script>
-  <script src="{{ asset('template/vendors/datatables.net/jquery.dataTables.js') }} "></script>
-  <script src="{{ asset('template/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }} "></script>
-  <script src="{{ asset('template/js/dataTables.select.min.js') }} "></script>
-  <script src="{{ asset('template/js/off-canvas.js') }} "></script>
-  <script src="{{ asset('template/js/hoverable-collapse.js') }} "></script>
-  <script src="{{ asset('template/js/template.js') }} "></script>
-  <script src="{{ asset('template/js/settings.js') }} "></script>
-  <script src="{{ asset('template/js/todolist.js') }} "></script>
-  <script src="{{ asset('template/js/dashboard.js') }} "></script>
-  <script src="{{ asset('template/js/Chart.roundedBarCharts.js') }} "></script>
+<!-- mother grid end here-->
+    
 </body>
 </html>
 
