@@ -34,6 +34,8 @@ Route::post('/show_categori', 'HomeUnauthController@show_kategori');
 Auth::routes();
 Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
+Route::put('/admin/transaksi/update/{transaksi:id}', [TransactionAdminController::class, 'update'])->name('update-transaksi');
+
 Route::prefix('admin')->group(function(){
     Route::get('/', function () {
         return redirect('admin/dashboard');
@@ -44,6 +46,10 @@ Route::prefix('admin')->group(function(){
     Route::post('/transaksi/sort', 'TransactionController@sort');
     Route::get('/transaksi/detail/{id}', 'TransactionDetailController@index');
     Route::get('/marknotifadmin', 'AdminController@markReadAdmin');
+
+    Route::get('/transaksi/detail/{id}','AdminDetailTransaksiController@index')->name('admin.detail_transaksi');
+
+    Route::post('/transaksi/detail/status', 'AdminDetailTransaksiController@membatalkanPesanan');
 
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
@@ -60,6 +66,8 @@ Route::prefix('admin')->group(function(){
     Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset')->name('admin.password.update');
+
+
 });
 
 Route::get('/marknotif', 'UsersController@marknotif');
@@ -69,6 +77,7 @@ Route::post('/admin/transaksi/sort', 'TransactionController@sort');
 Route::post('/report-bulan', 'TransactionController@filterBulan');
 Route::post('/report-tahun', 'TransactionController@filterTahun');
 Route::post('/grafik', 'TransactionController@grafik');
+Route::post('/respon', 'ResponseController@store');
 
 Route::post('/beli', 'TransactionController@store');
 Route::get('/transaksi/{id}', 'TransactionController@index');
