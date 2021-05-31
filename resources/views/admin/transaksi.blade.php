@@ -52,7 +52,7 @@
                       <strong>{{$item->status}}</strong>
                   </td>
                   <td>
-                    <a href="/transaksi/detail/{{$item->id}}"><strong>Lihat Detail</strong></a>
+                    <a href="/admin/transaksi/detail/{{$item->id}}"><strong>Lihat Detail</strong></a>
                   </td>
                 </tr>
                 @endforeach
