@@ -6,10 +6,14 @@
           	<strong>{{ $message }}</strong>
     </div>
 @endif
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="grid-margin stretch-card">
+      <div class="card">
         <h2 class="card-title" style="text-align: center;">Detail Produk</h2>
         <br>
-		<div class="table">
-		  <table class="table table-striped table-bordered " align='center' >
+		<div class="table-responsive">
+            <table class="table table-hover">
 			@foreach($products as $product)
 			<tbody>
 			  <tr>
@@ -86,7 +90,7 @@
 			  @endforelse
 			</div>
 		  </div>
-		  
+		  <br></br>
 			<h2 align="center" class="card-title">Review Produk</h4>
 				<br>
 				<div class="table">
@@ -155,4 +159,8 @@
 					</tbody>
 				  </table>
 				</div>
+				</div>
+								</div>
+							  </div>
+							</div>
 @endsection

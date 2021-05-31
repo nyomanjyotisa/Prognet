@@ -87,7 +87,7 @@ Route::post('/transaksi/detail/proof', 'TransactionDetailController@uploadProof'
 Route::post('/transaksi/detail/review', 'ProductReviewController@store');
 Route::post('/transaksi/detail/review', 'ProductReviewController@store');
 
-//Admin Route
+// //Admin Route
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginform')->middleware('guest')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->middleware('guest')->name('admin.login.submit');
@@ -96,13 +96,13 @@ Route::prefix('admin')->group(function(){
     Route::resource('/products', 'AdminProductController');
     Route::resource('/categories', 'AdminCategoryController');
     Route::resource('/couriers', 'AdminCourierController');
-    // Route::get('/transaksi', 'TransactionController@adminIndex');
-    // Route::post('/transaksi/sort', 'TransactionController@sort');
-    // Route::get('/transaksi/detail/{id}', 'TransactionDetailController@adminIndex');
-    Route::get('/marknotifadmin', 'AdminController@markReadAdmin');
+//     Route::get('/transaksi', 'TransactionController@adminIndex');
+//     Route::post('/transaksi/sort', 'TransactionController@sort');
+//     Route::get('/transaksi/detail/{id}', 'TransactionDetailController@adminIndex');
+//     Route::get('/marknotifadmin', 'AdminController@markReadAdmin');
 });
 
-//Admin Product
+// //Admin Product
 Route::resource('products', 'AdminProductController');
 Route::get('/addImage/{id}', 'AdminProductController@upload');
 Route::post('/addImage/{id}', 'AdminProductController@upload_image');
@@ -116,14 +116,14 @@ Route::get('/products/destroy/{id}', 'AdminProductController@delete');
 Route::get('/products-delete-all', 'AdminProductController@delete_all');
 Route::resource('product_images','AdminProductImageController');
 Route::resource('discounts','AdminDiscountController');
-Route::resource('response', 'ResponseController');
-Route::post('/admin/transaksi/sort', 'TransactionController@sort');
-Route::post('/report-bulan', 'TransactionController@filterBulan');
-Route::post('/report-tahun', 'TransactionController@filterTahun');
-Route::post('/grafik', 'TransactionController@grafik');
+// Route::resource('response', 'ResponseController');
+// Route::post('/admin/transaksi/sort', 'TransactionController@sort');
+// Route::post('/report-bulan', 'TransactionController@filterBulan');
+// Route::post('/report-tahun', 'TransactionController@filterTahun');
+// Route::post('/grafik', 'TransactionController@grafik');
 
 
-//Admin Product_Categories
+// //Admin Product_Categories
 Route::resource('categories', 'AdminCategoryController');
 Route::get('/categories/delete/{id}', 'AdminCategoryController@soft_delete');
 Route::get('/categories-trash', 'AdminCategoryController@trash');
@@ -132,10 +132,10 @@ Route::get('/categories-restore-all', 'AdminCategoryController@restore_all');
 Route::get('/categories/destroy/{id}', 'AdminCategoryController@delete');
 Route::get('/categories-delete-all', 'AdminCategoryController@delete_all');
 
-// Admin Product_Category_Detail
+// // Admin Product_Category_Detail
 Route::resource('product_category_details', 'AdminProductCategoryDetailController');
 
-//Admin Courier
+// //Admin Courier
 Route::resource('couriers', 'AdminCourierController');
 Route::get('/couriers/delete/{id}', 'AdminCourierController@soft_delete');
 Route::get('/couriers-trash', 'AdminCourierController@trash');
@@ -144,4 +144,4 @@ Route::get('/couriers-restore-all', 'AdminCourierController@restore_all');
 Route::get('/couriers/destroy/{id}', 'AdminCourierController@delete');
 Route::get('/couriers-delete-all', 'AdminCourierController@delete_all');
 
-Auth::routes(['verify' => true]);
+// Auth::routes(['verify' => true]);
