@@ -20,9 +20,10 @@
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Products</a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Categories</a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Courier</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/products') }}">Products</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/categories') }}">Categories</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/couriers') }}">Courier</a></li>
+
         </ul>
       </div>
     </li>
