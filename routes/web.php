@@ -42,7 +42,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/transaksi', 'AdminController@transaksi');
 
     Route::post('/transaksi/sort', 'TransactionController@sort');
-    Route::get('/transaksi/detail/{id}', 'TransactionDetailController@adminIndex');
+    Route::get('/transaksi/detail/{id}', 'TransactionDetailController@index');
     Route::get('/marknotifadmin', 'AdminController@markReadAdmin');
 
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
