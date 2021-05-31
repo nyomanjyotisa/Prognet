@@ -17,7 +17,6 @@ class TransactionDetailController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:admin']);
         $this->middleware(['auth:web']);
     }
 
@@ -49,12 +48,9 @@ class TransactionDetailController extends Controller
             $transaksi->status = 'verified';
             $transaksi->save();
 
-            // dd($transaksi->transaction_detail);
             foreach($transaksi->transaction_detail as $item){
                 $produk = Product::find($item->product_id);
-                // dd($produk);
                 $produk->stock = $produk->stock - $item->qty;
-                // dd($produk->stock);
                 $produk->save();
             }
 
@@ -80,6 +76,7 @@ class TransactionDetailController extends Controller
 
         $transaksi->proof_of_payment = $nama_file;
         $transaksi->save();
+
         $admin = Admin::find(1);
         $notif = "<a class='dropdown-item' href='/admin/transaksi/detail/".$transaksi->id."'>".
                 "<div class='item-content flex-grow'>".
