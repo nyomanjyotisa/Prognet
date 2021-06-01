@@ -35,11 +35,8 @@ class AdminDetailTransaksiController extends Controller
         if($request->status == 1){
             $transaksi->status = 'canceled';
             $transaksi->save();
-<<<<<<< Updated upstream
             return redirect('/admin/transaksi/detail/'.$request->id);
-=======
-            return redirect('/transaksi/detail/'.$request->id);
->>>>>>> Stashed changes
+    
         }elseif($request->status == 3){
             $transaksi->status = 'verified';
             $transaksi->save();
@@ -54,11 +51,8 @@ class AdminDetailTransaksiController extends Controller
         }elseif($request->status == 2){
             $transaksi->status = 'success';
             $transaksi->save();
-<<<<<<< Updated upstream
             return redirect('admin//transaksi/detail/'.$request->id);
-=======
-            return redirect('/transaksi/detail/'.$request->id);
->>>>>>> Stashed changes
+        
         }elseif($request->status == 4){
             $transaksi->status = 'indelivery';
             $transaksi->save();
@@ -71,7 +65,6 @@ class AdminDetailTransaksiController extends Controller
         }
     }
 
-<<<<<<< Updated upstream
     public function upload_response ($id, Request $request){
         $data_review = ProductReview::find($id);
         
@@ -85,6 +78,4 @@ class AdminDetailTransaksiController extends Controller
 
     }
 
-=======
->>>>>>> Stashed changes
 }
