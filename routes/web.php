@@ -67,6 +67,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset')->name('admin.password.update');
 
+<<<<<<< Updated upstream
 
 });
 
@@ -145,3 +146,12 @@ Route::get('/couriers/destroy/{id}', 'AdminCourierController@delete');
 Route::get('/couriers-delete-all', 'AdminCourierController@delete_all');
 
 // Auth::routes(['verify' => true]);
+=======
+    Route::get('/transaksi/detail/{id}','AdminDetailTransaksiController@index');
+
+    Route::post('/transaksi/detail/status', 'AdminDetailTransaksiController@membatalkanPesanan');
+
+});
+
+
+>>>>>>> Stashed changes

@@ -3,10 +3,17 @@
 @section('content')
      <!-- Main Layout -->
   <main>
+<<<<<<< Updated upstream
     <div style="margin-top:100px;" class="container mt-5 pt-3">
 
       <!-- Grid row -->
       <div class="row" style="margin-top: -25px;">
+=======
+    <div style="margin-top:120px;" class="container mt-5 pt-3">
+
+      <!-- Grid row -->
+      <div class="row" style="margin-top: -140px;">
+>>>>>>> Stashed changes
 
         <!-- Grid column -->
         <div class="col-md-12">
@@ -107,7 +114,19 @@
   
                                 </div>
                             </div>
+<<<<<<< Updated upstream
                           </div>
+=======
+
+                            <!-- Grid column -->
+
+                          </div>
+                          <!-- Grid row -->
+
+                          <!-- Grid row -->
+
+
+>>>>>>> Stashed changes
                         </div>
 
                       </div>
@@ -154,7 +173,11 @@
                             <li>
                                     @if ($transaksi->status == "unverified" && !is_null($transaksi->proof_of_payment))
                                         <br>
+<<<<<<< Updated upstream
                                         <div class="d-flex justify-content-center">
+=======
+                                        <div class="d-flex flex-row bd-highlight mb-3">
+>>>>>>> Stashed changes
                                             <form action="/admin/transaksi/detail/status" method="POST">
                                               @csrf
                                               <input type="hidden" name="id" value="{{$transaksi->id}}">
@@ -165,7 +188,11 @@
                                     @endif
                                     
                                     @if ($transaksi->status === 'verified')
+<<<<<<< Updated upstream
                                             <div class="d-flex justify-content-center">
+=======
+                                            <div class="d-flex flex-row bd-highlight mb-3">
+>>>>>>> Stashed changes
                                             <form action="/admin/transaksi/detail/status" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{$transaksi->id}}">
@@ -176,7 +203,11 @@
                                     @endif
 
                                     @if ($transaksi->status === 'indelivery')
+<<<<<<< Updated upstream
                                             <div class="d-flex justify-content-center">
+=======
+                                            <div class="d-flex flex-row bd-highlight mb-3">
+>>>>>>> Stashed changes
                                             <form action="/admin/transaksi/detail/status" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{$transaksi->id}}">
@@ -189,11 +220,16 @@
                                         @if (is_null($transaksi->proof_of_payment))
                                        
                                         @else
+<<<<<<< Updated upstream
                                             <div  class="d-flex justify-content-center">
+=======
+                                        <div class="d-flex flex-row bd-highlight mb-3">
+>>>>>>> Stashed changes
                                                 <button id="tombol" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalContactForm">Proof Of Payment</button>
                                             </div>
                                         @endif
 
+<<<<<<< Updated upstream
                                         <div  class="d-flex justify-content-center">
                                           <a href="/admin/transaksi"><button class="btn btn-warning btn-rounded">Back</button></a>
                                         </div>
@@ -208,6 +244,11 @@
                                           </div>  
                                         @else
                                         @endif
+=======
+                                        <div class="d-flex flex-row bd-highlight mb-3">
+                                          <a href="/admin/transaksi"><button class="btn btn-warning btn-rounded">Back</button></a>
+                                        </div>
+>>>>>>> Stashed changes
                             </li>
                           </ul>
                         </div>
@@ -239,7 +280,12 @@
   </main>
   <!-- Main Layout -->
       <!-- Main Container -->
+<<<<<<< Updated upstream
       <div style="width:1080px;" class="container">
+=======
+      <br>
+      <div style="width:1080px; margin-top:-200px" class="container">
+>>>>>>> Stashed changes
         <section class="section my-5 pb-5">
   
           <!-- Shopping Cart table -->
@@ -301,6 +347,7 @@
                     
                 
                 <tr>
+<<<<<<< Updated upstream
   
                   <th scope="row">
                       @foreach ($item->product->product_image as $image)
@@ -310,6 +357,14 @@
                       @endforeach
                   </th>
   
+=======
+                  <th scope="row">
+                      @foreach ($item->product->product_image as $image)
+                          <img style="width:200px;height:100px;" src="{{asset('/uploads/product_images/'.$image->image_name)}}" alt=""class="img-fluid z-depth-0">
+                          @break
+                      @endforeach
+                  </th>
+>>>>>>> Stashed changes
                   <td>
                     <h5 class="mt-3">
                       <input type="hidden" name="id" id="product_id{{$loop->iteration-1}}" value="{{$item->product->id}}">
@@ -404,6 +459,7 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
+<<<<<<< Updated upstream
                     
 
                     <!-- Body -->
@@ -423,6 +479,24 @@
                       <div class="text-center mt-1-half">
                       <button type="submit" class="btn btn-info mb-2" id="kirim-review">Send</button>
                       </form>
+=======
+
+                    
+
+                    <!-- Body -->
+                    <div class="modal-body mb-0">
+                        <input type="hidden" name="review_id" id="review_id" value="">
+                        <input type="hidden" name="admin_id" id="admin_id" value="1">
+                        <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
+                      <br><br>
+                      <div class="md-form form-sm">
+                        <label >Masukan Balasan</label>
+                        <textarea type="text" id="content" class="md-textarea form-control form-control-sm text-dark" rows="3" required></textarea>
+                      </div>
+                      <br><br>
+                      <div class="text-center mt-1-half">
+                        <button type="submit" class="btn btn-info mb-2" id="kirim-review">Send</button>
+>>>>>>> Stashed changes
                       </div>
                     </div>
                   </div>
@@ -453,22 +527,34 @@
 
                   $("#kirim-review").click(function(e){
                     jQuery.ajax({
+<<<<<<< Updated upstream
                           url: "{{url('/transaksi/detail/review')}}",
+=======
+                          url: "{{url('/admin/transaksi/detail/review')}}",
+>>>>>>> Stashed changes
                           method: 'post',
                           data: {
                               _token: $('#signup-token').val(),
                               admin_id: $("#admin_id").val(),
                               review_id: $("#review_id").val(),
                               content: $("#content").val(),
+<<<<<<< Updated upstream
+=======
+                            
+                              
+>>>>>>> Stashed changes
                           },
                           success: function(result){
                             $('#modalLihatReview').modal('hide');
                             alert('Berhasil Membalas Review');
                             location.reload();
                           }
+<<<<<<< Updated upstream
                           $.ajaxSetup({
                           header:$('meta[name="_token"]').attr('content')
                         })e.preventDefault(e);
+=======
+>>>>>>> Stashed changes
                       });
                   });
               });
