@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Password;
+use Illuminate\Support\Facades\Password;
 
 class AdminForgotPasswordController extends Controller
 {

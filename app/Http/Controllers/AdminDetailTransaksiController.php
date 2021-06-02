@@ -36,6 +36,7 @@ class AdminDetailTransaksiController extends Controller
             $transaksi->status = 'canceled';
             $transaksi->save();
             return redirect('/admin/transaksi/detail/'.$request->id);
+    
         }elseif($request->status == 3){
             $transaksi->status = 'verified';
             $transaksi->save();
@@ -51,6 +52,7 @@ class AdminDetailTransaksiController extends Controller
             $transaksi->status = 'success';
             $transaksi->save();
             return redirect('admin//transaksi/detail/'.$request->id);
+        
         }elseif($request->status == 4){
             $transaksi->status = 'indelivery';
             $transaksi->save();

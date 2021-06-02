@@ -301,15 +301,12 @@
                     
                 
                 <tr>
-  
                   <th scope="row">
                       @foreach ($item->product->product_image as $image)
-                      
-                          <img style="width:105px;height:105px;" src="{{asset('/uploads/product_images/'.$image->image_name)}}" alt=""class="img-fluid z-depth-0">
+                          <img style="width:200px;height:100px;" src="{{asset('/uploads/product_images/'.$image->image_name)}}" alt=""class="img-fluid z-depth-0">
                           @break
                       @endforeach
                   </th>
-  
                   <td>
                     <h5 class="mt-3">
                       <input type="hidden" name="id" id="product_id{{$loop->iteration-1}}" value="{{$item->product->id}}">
@@ -370,7 +367,7 @@
         </section>
       </div>
       <!-- Main Container -->
-      <div class="modal" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog cascading-modal" role="document">
         <!-- Content -->
         <div class="modal-content">
@@ -453,22 +450,21 @@
 
                   $("#kirim-review").click(function(e){
                     jQuery.ajax({
-                          url: "{{url('/transaksi/detail/review')}}",
+                          url: "{{url('/admin/transaksi/detail/review')}}",
                           method: 'post',
                           data: {
                               _token: $('#signup-token').val(),
                               admin_id: $("#admin_id").val(),
                               review_id: $("#review_id").val(),
                               content: $("#content").val(),
+                            
+                              
                           },
                           success: function(result){
                             $('#modalLihatReview').modal('hide');
                             alert('Berhasil Membalas Review');
                             location.reload();
                           }
-                          $.ajaxSetup({
-                          header:$('meta[name="_token"]').attr('content')
-                        })e.preventDefault(e);
                       });
                   });
               });
