@@ -67,9 +67,10 @@
               <h5 class="preview-subject font-weight-normal">@foreach($notifications as $notif)
 													{!!$notif->data!!}
 											  	@endforeach</h5>
-												<div class="notification_bottom">
-													<a class="btn btn-block" href="/admin/marknotifadmin">Mark as Read</a>
-												</div> 
+							<div class="notification_bottom">
+						<a class="btn btn-block" href="/admin/marknotifadmin">Mark as Read</a>
+					</div> 
         </div>
+        @endauth
   </div>
 </nav>
