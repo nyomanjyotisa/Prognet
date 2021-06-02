@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Password;
+use Illuminate\Support\Facades\Password;
 
 class AdminResetPasswordController extends Controller
 {
