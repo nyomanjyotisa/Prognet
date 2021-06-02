@@ -34,14 +34,14 @@
         </form>
       </li>
     </li>
-
-              <li class="nav-item dropdown">
-              <?php 
-                  								$id = 1;
-                  								$admin = App\Admin::find(1);
-                  								$notif_count = $admin->unreadNotifications->count();
-                  								$notifications = DB::table('admin_notifications')->where('notifiable_id',$id)->where('read_at',NULL)->orderBy('created_at','desc')->get();
-                						?>
+    @auth
+    <li class="nav-item dropdown">
+      <?php 
+        $id = 1;
+      	$admin = App\Admin::find(1);
+      	$notif_count = $admin->unreadNotifications->count();
+      	$notifications = DB::table('admin_notifications')->where('notifiable_id',$id)->where('read_at',NULL)->orderBy('created_at','desc')->get();
+      ?>
         <a href="#" class="nav-link count-indicator dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
         <i class="icon-bell mx-0"></i>
         <span class="badge badge-pill badge-danger">{{$notif_count}}</span></a>
@@ -50,9 +50,10 @@
               <h5 class="preview-subject font-weight-normal">@foreach($notifications as $notif)
 													{!!$notif->data!!}
 											  	@endforeach</h5>
-												<div class="notification_bottom">
-													<a class="btn btn-block" href="/admin/marknotifadmin">Mark as Read</a>
-												</div> 
+							<div class="notification_bottom">
+						<a class="btn btn-block" href="/admin/marknotifadmin">Mark as Read</a>
+					</div> 
         </div>
+        @endauth
   </div>
 </nav>
