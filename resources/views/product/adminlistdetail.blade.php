@@ -57,9 +57,9 @@
 				<a href="{{ route('products.edit',$product->id)}}" style="color: white;">Edit Produk</a>
         </button>
             
-		<button type="button" class="btn btn-success btn-icon-text" onclick="/addImage/{{ $product->id }}">
+		<button type="button" class="btn btn-success btn-icon-text" onclick="/admin/addImage/{{ $product->id }}">
 				<i class="mdi mdi-file-restore btn-icon-prepend fa fa-picture-o"></i>     
-				<a href="/addImage/{{ $product->id }}" style="color: white;">Tambah Foto Produk</a>
+				<a href="/admin/addImage/{{ $product->id }}" style="color: white;">Tambah Foto Produk</a>
         </button>
             </div>
 		@endforeach

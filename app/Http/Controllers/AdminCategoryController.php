@@ -120,7 +120,7 @@ class AdminCategoryController extends Controller
             'category_name' => $request->category_name,
         ];
         Category::where('id', $id)->update($update);
-        return Redirect::to('categories')->with(['success' => 'Berhasil Mengedit Kategori']);
+        return Redirect::to('/admin/categories')->with(['success' => 'Berhasil Mengedit Kategori']);
     }
 
     /**
@@ -138,7 +138,7 @@ class AdminCategoryController extends Controller
     public function soft_delete($id){
         $categories = Category::find($id);
         $categories->delete();
-        return Redirect::to('categories')->with(['error' => 'Berhasil Menghapus Kategori']);
+        return Redirect::to('/admin/categories')->with(['error' => 'Berhasil Menghapus Kategori']);
     }
 
     public function trash(){
@@ -153,26 +153,26 @@ class AdminCategoryController extends Controller
     public function restore($id){
         $categories = Category::onlyTrashed()->where('id',$id);
         $categories->restore();
-        return Redirect::to('categories-trash')->with(['success' => 'Berhasil Mengembalikan Kategori']);
+        return Redirect::to('/admin/categories-trash')->with(['success' => 'Berhasil Mengembalikan Kategori']);
     }
 
     public function restore_all(){
         $categories = Category::onlyTrashed();
         $categories->restore();
-        return Redirect::to('categories-trash')->with(['success' => 'Berhasil Mengembalikan Semua Kategori']);   
+        return Redirect::to('/admin/categories-trash')->with(['success' => 'Berhasil Mengembalikan Semua Kategori']);   
     }
 
     public function delete($id){
         Product_Category_Detail::where('category_id',$id)->delete();
         $categories = Category::onlyTrashed()->where('id', $id);
         $categories->forceDelete();
-        return Redirect::to('categories-trash')->with(['error' => 'Berhasil Menghapus Permanen Kategori']);
+        return Redirect::to('/admin/categories-trash')->with(['error' => 'Berhasil Menghapus Permanen Kategori']);
     }
 
     public function delete_all($id){
         Product_Category_Detail::where('product_id',$id)->delete();
         $categories = Category::onlyTrashed();
         $categories->forceDelete();
-        return Redirect::to('categories-trash')->with(['error' => 'Berhasil Menghapus Permanen Semua Kategori']);
+        return Redirect::to('/admin/categories-trash')->with(['error' => 'Berhasil Menghapus Permanen Semua Kategori']);
     }
 }

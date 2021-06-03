@@ -26,7 +26,7 @@
             </button>
             <button type="button" class="btn-sm btn-danger btn-icon-text" onclick="">
                 <i class="mdi  mdi-delete btn-icon-prepend fa fa-trash"></i>
-                <a href="/categories-trash" style="color: white">Trash</a>
+                <a href="/admin/categories-trash" style="color: white">Trash</a>
             </button>
               <table class="table table-striped table-hover"style="width:1100px;">
                 <thead>
@@ -49,7 +49,7 @@
                     <td>{{ $category->category_name }}</td>
                     <td style="align: center;">
                         <a class="btn-sm btn-warning fa fa-pencil" href="{{ route('categories.edit',$category->id)}}"></a>        
-                        <a class="btn-sm btn-danger fa fa-trash" href="/categories/delete/{{ $category->id }}" onclick="return confirm('Apa yakin ingin menghapus data ini?')"></a>
+                        <a class="btn-sm btn-danger fa fa-trash" href="/admin/categories/delete/{{ $category->id }}" onclick="return confirm('Apa yakin ingin menghapus data ini?')"></a>
                     </td>
                   </tr>
                   @endforeach

@@ -115,7 +115,7 @@ class AdminDiscountController extends Controller
                     ->select('id_product')
                     ->where('id','=',$id)
                     ->first();
-        return Redirect::to('/discounts/'."{$categories->id_product}")->with(['success' => 'Berhasil Mengedit Discount']);
+        return Redirect::to('/admin/discounts/'."{$categories->id_product}")->with(['success' => 'Berhasil Mengedit Discount']);
     }
 
     /**

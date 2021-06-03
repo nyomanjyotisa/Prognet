@@ -27,7 +27,7 @@
 		</button>
 		<button type="button" class="btn-sm btn-danger btn-icon-text" onclick="">
 			<i class="mdi  mdi-delete btn-icon-prepend fa fa-trash"></i>
-			<a href="/products-trash" style="color: white">Trash</a>
+			<a href="/admin/products-trash" style="color: white">Trash</a>
 		</button>
 		</span>
 		  <table class="table table-striped table-hover" style="width:1100px;">
@@ -75,7 +75,7 @@
 				
 					<a class="btn-sm btn-warning fa fa-pencil" href="{{ route('products.edit',$product->id)}}"></a>
 				
-					<a class="btn-sm btn-danger fa fa-trash" href="/products/delete/{{ $product->id }}" onclick="return confirm('Apa yakin ingin menghapus data ini?')"></a>
+					<a class="btn-sm btn-danger fa fa-trash" href="/admin/products/delete/{{ $product->id }}" onclick="return confirm('Apa yakin ingin menghapus data ini?')"></a>
 				</td>
 			  </tr>
 			  @endforeach

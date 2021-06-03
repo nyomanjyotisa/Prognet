@@ -89,25 +89,25 @@ Route::prefix('admin')->group(function(){
     Route::post('/transaksi/detail/review', 'ProductReviewController@store');
     Route::post('/transaksi/detail/review', 'ProductReviewController@store');
 
-// //Admin Product
-Route::resource('products', 'AdminProductController');
-Route::get('/addImage/{id}', 'AdminProductController@upload');
-Route::post('/addImage/{id}', 'AdminProductController@upload_image');
-Route::get('/addDiscount/{id}', 'AdminProductController@discount');
-Route::post('/addDiscount/{id}', 'AdminProductController@add_discount');
-Route::get('/products/delete/{id}', 'AdminProductController@soft_delete');
-Route::get('/products-trash', 'AdminProductController@trash');
-Route::get('/products/restore/{id}', 'AdminProductController@restore');
-Route::get('/products-restore-all', 'AdminProductController@restore_all');
-Route::get('/products/destroy/{id}', 'AdminProductController@delete');
-Route::get('/products-delete-all', 'AdminProductController@delete_all');
-Route::resource('product_images','AdminProductImageController');
-Route::resource('discounts','AdminDiscountController');
-// Route::resource('response', 'ResponseController');
-// Route::post('/admin/transaksi/sort', 'TransactionController@sort');
-// Route::post('/report-bulan', 'TransactionController@filterBulan');
-// Route::post('/report-tahun', 'TransactionController@filterTahun');
-// Route::post('/grafik', 'TransactionController@grafik');
+    // //Admin Product
+    Route::resource('products', 'AdminProductController');
+    Route::get('/addImage/{id}', 'AdminProductController@upload');
+    Route::post('/addImage/{id}', 'AdminProductController@upload_image');
+    Route::get('/addDiscount/{id}', 'AdminProductController@discount');
+    Route::post('/addDiscount/{id}', 'AdminProductController@add_discount');
+    Route::get('/products/delete/{id}', 'AdminProductController@soft_delete');
+    Route::get('/products-trash', 'AdminProductController@trash');
+    Route::get('/products/restore/{id}', 'AdminProductController@restore');
+    Route::get('/products-restore-all', 'AdminProductController@restore_all');
+    Route::get('/products/destroy/{id}', 'AdminProductController@delete');
+    Route::get('/products-delete-all', 'AdminProductController@delete_all');
+    Route::resource('product_images','AdminProductImageController');
+    Route::resource('discounts','AdminDiscountController');
+    // Route::resource('response', 'ResponseController');
+    // Route::post('/admin/transaksi/sort', 'TransactionController@sort');
+    // Route::post('/report-bulan', 'TransactionController@filterBulan');
+    // Route::post('/report-tahun', 'TransactionController@filterTahun');
+    // Route::post('/grafik', 'TransactionController@grafik');
 
 
 // //Admin Product_Categories
@@ -137,5 +137,3 @@ Route::get('/couriers-delete-all', 'AdminCourierController@delete_all');
     Route::post('/transaksi/detail/status', 'AdminDetailTransaksiController@membatalkanPesanan');
 
 });
-
-

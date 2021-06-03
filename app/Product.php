@@ -6,7 +6,7 @@
  use Illuminate\Database\Eloquent\SoftDeletes;
  class Product extends Model
  {
-    // use SoftDeletes;
+    use SoftDeletes;
 
     protected $table = 'products';
 
@@ -23,7 +23,7 @@
     'updated_at' => 'datetime',
     ];
 
-    // protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     public function product_category_detail(){
       return $this->hasMany('App\Product_Category_Detail','product_id','id');

@@ -125,7 +125,7 @@ class AdminProductController extends Controller
         }
         Product_image::insert($files);
     }
-        return Redirect::to('products')->with(['success' => 'Berhasil Menambah Produk']);
+        return Redirect::to('/admin/products/')->with(['success' => 'Berhasil Menambah Produk']);
     }
 
     /**
@@ -216,18 +216,18 @@ class AdminProductController extends Controller
             $categoryDetail->category_id = $category;
             $categoryDetail->save();
         }
-        return Redirect::to('products')->with(['success' => 'Berhasil Mengedit Produk']);
+        return Redirect::to('/admin/products/')->with(['success' => 'Berhasil Mengedit Produk']);
     }
 
     public function soft_delete($id){
         $products = Product::find($id);
         $products->delete();
-        return Redirect::to('products')->with(['error' => 'Berhasil Menghapus Produk']);
+        return Redirect::to('/admin/products')->with(['error' => 'Berhasil Menghapus Produk']);
     }
 
     public function destroy($id){
         Product::where('id', $id)->delete();
-        return Redirect::to('products');    
+        return Redirect::to('/admin/products');    
     }
 
     public function upload($id){
@@ -257,7 +257,7 @@ class AdminProductController extends Controller
         }
 
         Product_image::insert($files);
-        return Redirect::to('products')->with(['success' => 'Berhasil Menambahkan Foto']);
+        return Redirect::to('/admin/products')->with(['success' => 'Berhasil Menambahkan Foto']);
     }
 
     public function discount($id){
@@ -287,9 +287,8 @@ class AdminProductController extends Controller
     	$discount->start = $request->start;
     	$discount->end = $request->end;
         $discount->save();
-        
-        return Redirect::to('/discounts/'.$id)
-       ->with('success','Berhasil Menambah Data Diskon');
+        // dd($discount);
+        return Redirect::to('/admin/discounts/'.$id) ->with('success','Berhasil Menambah Data Diskon');
     }
 
     public function trash(){
@@ -307,13 +306,13 @@ class AdminProductController extends Controller
     public function restore($id){
         $products = Product::onlyTrashed()->where('id',$id);
         $products->restore();
-        return Redirect::to('products-trash')->with(['success' => 'Berhasil Mengembalikan Produk']);
+        return Redirect::to('/admin/products-trash')->with(['success' => 'Berhasil Mengembalikan Produk']);
     }
 
     public function restore_all(){
         $products = Product::onlyTrashed();
         $products->restore();
-        return Redirect::to('products-trash')->with(['success' => 'Berhasil Mengembalikan Semua Produk']);   
+        return Redirect::to('/admin/products-trash')->with(['success' => 'Berhasil Mengembalikan Semua Produk']);   
     }
 
     public function delete($id){
@@ -322,7 +321,7 @@ class AdminProductController extends Controller
         Product_image::where('product_id',$id)->delete();
         $products = Product::onlyTrashed()->where('id', $id);
         $products->forceDelete();
-        return Redirect::to('products-trash')->with(['error' => 'Berhasil Menghapus Permanen Produk']);
+        return Redirect::to('/admin/products-trash')->with(['error' => 'Berhasil Menghapus Permanen Produk']);
     }
 
     public function delete_all($id){
@@ -330,7 +329,7 @@ class AdminProductController extends Controller
         Product_image::where('product_id',$id)->delete();
         $products = Product::onlyTrashed();
         $products->forceDelete();
-        return Redirect::to('products-trash')->with(['error' => 'Berhasil Menghapus Permanen Semua Produk']);
+        return Redirect::to('/admin/products-trash')->with(['error' => 'Berhasil Menghapus Permanen Semua Produk']);
     }
 
     public function hapus_review($id){
@@ -356,6 +355,6 @@ class AdminProductController extends Controller
         $product->product_rate = $meanRate;
         $product->save();
 
-        return redirect('/products/'.$product_id.'#review');
+        return redirect('/admin/products/'.$product_id.'#review');
     }
 }

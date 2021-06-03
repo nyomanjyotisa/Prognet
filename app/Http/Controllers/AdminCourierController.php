@@ -63,7 +63,7 @@ class AdminCourierController extends Controller
         $couriers = new Courier;
         $couriers->courier = $request->courier;
         $couriers->save();
-        return Redirect::to('couriers')->with(['success' => 'Berhasil Menambah Kurir']);
+        return Redirect::to('/admin/couriers')->with(['success' => 'Berhasil Menambah Kurir']);
     }
 
     /**
@@ -116,7 +116,7 @@ class AdminCourierController extends Controller
             'courier' => $request->courier,
         ];
         Courier::where('id', $id)->update($update);
-        return Redirect::to('couriers')->with(['success' => 'Berhasil Mengedit Kurir']);
+        return Redirect::to('/admin/couriers')->with(['success' => 'Berhasil Mengedit Kurir']);
     }
 
     /**
@@ -128,6 +128,6 @@ class AdminCourierController extends Controller
     public function destroy($id)
     {
         Courier::where('id',$id)->delete();
-        return Redirect::to('couriers')->with('error','Berhasil Menghapus Kurir');
+        return Redirect::to('/admin/couriers')->with('error','Berhasil Menghapus Kurir');
     }
 }
