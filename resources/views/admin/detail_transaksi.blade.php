@@ -408,7 +408,7 @@
 									  <form action="{{route('response.store')}}" method="POST">
 									  @csrf
 									  <div class="form-group">
-										<input type="text" name="" readonly="" value="{{$review->content}}" class="form-control">
+										<!-- <input type="text" name="" readonly="" value="{{$review->content}}" class="form-control"> -->
 									  </div>
 									  <div class="form-group">
 										<label>Respon</label>
