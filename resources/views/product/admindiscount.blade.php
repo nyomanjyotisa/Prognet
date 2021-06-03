@@ -55,12 +55,12 @@
 				<td>{{ date('Y-m-d', strtotime($val->start)) }}</td>
                 <td>{{ date('Y-m-d', strtotime($val->end)) }}</td>
 				<td align="center">
-					<a class="btn-sm btn-warning fa fa-pencil" href="{{ route('discounts.edit',$val->id)}}"></a>
+					<a class="btn-sm btn-warning fa fa-pencil" href="{{ route('discounts.edit',$val->id)}}">Edit</a>
 				
 					<form action="{{ route('discounts.destroy', $val->id)}}" method="post">
 						{{ csrf_field() }}
 						@method('DELETE')
-						<button class="btn btn-danger fa fa-trash" type="submit" onclick="return confirm('Apa yakin ingin menghapus data ini?')"></button>
+						<button class="btn-sm btn-danger mt-3" type="submit" onclick="return confirm('Apa yakin ingin menghapus data ini?')">Hapus</button>
 					</form>
 				</td>
 			  </tr>

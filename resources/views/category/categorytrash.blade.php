@@ -51,8 +51,8 @@
             <tr>
               <td>{{ $category->category_name }}</td>
               <td>
-                  <a class="btn-sm btn-info fa fa-undo" href="/admin/categories/restore/{{ $category->id }}"  onclick="return confirm('Apa yakin ingin mengembalikan data ini?')"></a>
-                  <a class="btn-sm btn-danger fa fa-trash" href="/admin/categories/destroy/{{ $category->id }}"  onclick="return confirm('Apa yakin ingin menghapus permanen data ini?')"></a>
+                  <a class="btn-sm btn-info fa fa-undo" href="/admin/categories/restore/{{ $category->id }}"  onclick="return confirm('Apa yakin ingin mengembalikan data ini?')">Undo</a>
+                  <a class="btn-sm btn-danger fa fa-trash" href="/admin/categories/destroy/{{ $category->id }}"  onclick="return confirm('Apa yakin ingin menghapus permanen data ini?')">Delete</a>
               </td>
             </tr>
             @endforeach

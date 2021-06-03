@@ -45,12 +45,12 @@
 					<td>{{ $loop->iteration }}</td>
                     <td>{{ $courier->courier }}</td>
                     <td>
-                        <a class="btn-sm btn-warning fa fa-pencil" href="{{ route('couriers.edit',$courier->id)}}"></a>
+                        <a class="btn-sm btn-warning fa fa-pencil" href="{{ route('couriers.edit',$courier->id)}}">Edit</a>
 
               <form action="{{ route('couriers.destroy', $courier->id)}}" method="post">
 							{{ csrf_field() }}
 							@method('DELETE')
-							<button class="btn btn-danger fa fa-trash" type="submit" onclick="return confirm('Apa yakin ingin menghapus data ini?')"></button>
+							<button class="btn-sm mt-2 btn-danger fa fa-trash" type="submit" onclick="return confirm('Apa yakin ingin menghapus data ini?')">Hapus</button>
 						  </form>
                     </td>
                   </tr>

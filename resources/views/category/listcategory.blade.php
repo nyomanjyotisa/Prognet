@@ -48,8 +48,8 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $category->category_name }}</td>
                     <td style="align: center;">
-                        <a class="btn-sm btn-warning fa fa-pencil" href="{{ route('categories.edit',$category->id)}}"></a>        
-                        <a class="btn-sm btn-danger fa fa-trash" href="/admin/categories/delete/{{ $category->id }}" onclick="return confirm('Apa yakin ingin menghapus data ini?')"></a>
+                        <a class="btn-sm btn-warning fa fa-pencil" href="{{ route('categories.edit',$category->id)}}">Edit</a>        
+                        <a class="btn-sm btn-danger fa fa-trash" href="/admin/categories/delete/{{ $category->id }}" onclick="return confirm('Apa yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
                   </tr>
                   @endforeach

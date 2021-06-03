@@ -11,6 +11,7 @@ use App\Notifications\UserNotification;
 
 class ResponseController extends Controller
 {
+   
     public function store(Request $request)
     {
         $respon = new respon;
@@ -27,3 +28,4 @@ class ResponseController extends Controller
         return redirect()->back()->with(['terkirim'=>'Balasan Terkirim']);
     }
 }
+

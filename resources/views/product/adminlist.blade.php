@@ -65,17 +65,16 @@
 				<td align="center"><a 
 					@foreach($discount as $discounts)
 						@if($product->id == $discounts->id_product)
-							class="btn btn-primary fa fa-percent"
 						@endif
 					@endforeach
-						class="btn btn-danger fa fa-percent"
-					href="{{ route('discounts.show',$product->id) }}"></a></td>
+						class="btn-sm btn-danger"
+					href="{{ route('discounts.show',$product->id) }}">Diskon</a></td>
 				<td align="center">
-					<a class="btn-sm btn-info fa fa-eye" href="{{ route('products.show',$product->id) }}"></a>
+					<a class="btn-sm btn-info fa fa-eye" href="{{ route('products.show',$product->id) }}">Detail</a>
 				
-					<a class="btn-sm btn-warning fa fa-pencil" href="{{ route('products.edit',$product->id)}}"></a>
+					<a class="btn-sm btn-warning fa fa-pencil" href="{{ route('products.edit',$product->id)}}">Edit</a>
 				
-					<a class="btn-sm btn-danger fa fa-trash" href="/admin/products/delete/{{ $product->id }}" onclick="return confirm('Apa yakin ingin menghapus data ini?')"></a>
+					<a class="btn-sm btn-danger fa fa-trash" href="/admin/products/delete/{{ $product->id }}" onclick="return confirm('Apa yakin ingin menghapus data ini?')">Hapus</a>
 				</td>
 			  </tr>
 			  @endforeach

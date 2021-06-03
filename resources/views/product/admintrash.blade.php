@@ -1,16 +1,21 @@
 @extends('layouts.adminApp')
 @section('content')
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
 @if ($message = Session::get('success'))
-      		<div class="alert alert-success alert-block">
-        		<button type="button" class="close" data-dismiss="alert">×</button> 
-          		<strong>{{ $message }}</strong>
-      		</div>
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button> 
+          	<strong>{{ $message }}</strong>
+    </div>
 @endif
 @if ($message = Session::get('error'))
-      		<div class="alert alert-danger alert-block">
-        		<button type="button" class="close" data-dismiss="alert">×</button> 
-        		<strong>{{ $message }}</strong>
-      		</div>
+    <div class="alert alert-danger alert-block">
+    	<button type="button" class="close" data-dismiss="alert">×</button> 
+        	<strong>{{ $message }}</strong>
+    </div>
 @endif
 <div class="table">
 		<h2 class="card-title" align="center">List Trash Produk</h2>
@@ -30,33 +35,17 @@
         </button>
         </span>
         <div class="table-responsive">
-          <table class="table table-striped">
+          <table align="center" class="table table-hover" width="100%" cellspacing="0">
             <thead>
               <tr>
-                <th>
-               Nama Produk
-				</th>
-				<th>
-				Kategori
-				</th>
-                <th>
-                  Rating
-                </th>
-                <th>
-                  Stock
-                </th>
-                <th>
-                  Berat
-                </th>
-                <th>
-                  Harga
-                </th>
-                <th>
-                  Deskripsi Produk
-                </th>
-                <th colspan="2" style="text-align:center;">
-                  Action
-                </th>
+              <th scope="col">Nama Produk</th> 
+              <th scope="col">Kategori</th>
+              <th scope="col">Rating</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Berat</th>
+              <th scope="col">Harga</th>
+              <th scope="col">Deskripsi Produk</th>     
+              <th scope="col">Action</th>         
               </tr>
             </thead>
             <tbody>
@@ -76,10 +65,8 @@
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->description }}</td>
                 <td>
-                    <a class="btn-sm btn-info fa fa-undo" href="/admin/products/restore/{{ $product->id }}"  onclick="return confirm('Apa yakin ingin mengembalikan data ini?')"></a>
-				</td>
-				<td>
-					<a class="btn-sm btn-danger fa fa-trash" href="/admin/products/destroy/{{ $product->id }}"  onclick="return confirm('Apa yakin ingin menghapus permanen data ini?')"></a>
+                    <a class="btn-sm btn-info fa fa-undo" href="/admin/products/restore/{{ $product->id }}"  onclick="return confirm('Apa yakin ingin mengembalikan data ini?')">Undo</a>
+					          <a class="btn-sm btn-danger fa fa-trash" href="/admin/products/destroy/{{ $product->id }}"  onclick="return confirm('Apa yakin ingin menghapus permanen data ini?')">Delete</a>
                 </td>
               </tr>
               @endforeach
