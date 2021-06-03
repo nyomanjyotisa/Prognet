@@ -7,7 +7,7 @@
 		<div class="col-md-8">
 			<div class="component">
 				<div class="card">
-					<form class="form-signin" action="/addImage/{{ $products->id }}" method="post" enctype="multipart/form-data">
+					<form class="form-signin" action="/admin/addImage/{{ $products->id }}" method="post" enctype="multipart/form-data">
 						@csrf
 					<div class="card-header">
 						<center>

@@ -18,15 +18,15 @@
         <span>
         <button type="button" class="btn-sm btn-warning btn-icon-text" onclick="">
             <i class="mdi mdi-keyboard-backspace btn-icon-prepend fa fa-arrow-left"></i>     
-            <a href="/products" style="color: white;">Back</a>
+            <a href="/admin/products" style="color: white;">Back</a>
         </button>
         <button type="button" class="btn-sm btn-success btn-icon-text" onclick="">
             <i class="mdi mdi-file-restore btn-icon-prepend fa fa-undo"></i>     
-            <a href="/products-restore-all" style="color: white;"  onclick="return confirm('Apa yakin ingin mengembalikan semua data ini?')">Restore All</a>
+            <a href="/admin/products-restore-all" style="color: white;"  onclick="return confirm('Apa yakin ingin mengembalikan semua data ini?')">Restore All</a>
         </button>
         <button type="button" class="btn-sm btn-danger btn-icon-text" onclick="">
             <i class="mdi mdi-delete-forever btn-icon-prepend fa fa-trash"></i>
-            <a href="/products-delete-all" style="color: white"  onclick="return confirm('Apa yakin ingin menghapus permanen semua data ini?')">Delete All</a>
+            <a href="/admin/products-delete-all" style="color: white"  onclick="return confirm('Apa yakin ingin menghapus permanen semua data ini?')">Delete All</a>
         </button>
         </span>
         <div class="table-responsive">
@@ -76,10 +76,10 @@
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->description }}</td>
                 <td>
-                    <a class="btn-sm btn-info fa fa-undo" href="/products/restore/{{ $product->id }}"  onclick="return confirm('Apa yakin ingin mengembalikan data ini?')"></a>
+                    <a class="btn-sm btn-info fa fa-undo" href="/admin/products/restore/{{ $product->id }}"  onclick="return confirm('Apa yakin ingin mengembalikan data ini?')"></a>
 				</td>
 				<td>
-					<a class="btn-sm btn-danger fa fa-trash" href="/products/destroy/{{ $product->id }}"  onclick="return confirm('Apa yakin ingin menghapus permanen data ini?')"></a>
+					<a class="btn-sm btn-danger fa fa-trash" href="/admin/products/destroy/{{ $product->id }}"  onclick="return confirm('Apa yakin ingin menghapus permanen data ini?')"></a>
                 </td>
               </tr>
               @endforeach

@@ -8,15 +8,15 @@
                   <span>
                   <button type="button" class="btn-sm btn-warning btn-icon-text" onclick="">
                       <i class="mdi mdi-keyboard-backspace btn-icon-prepend"></i>     
-                      <a href="/categories" style="color: white;">Back</a>
+                      <a href="/admin/categories" style="color: white;">Back</a>
                   </button>
                   <button type="button" class="btn-sm btn-success btn-icon-text" onclick="">
                       <i class="mdi mdi-file-restore btn-icon-prepend"></i>     
-                      <a href="/categories-restore-all" style="color: white;"  onclick="return confirm('Apa yakin ingin mengembalikan semua data ini?')">Restore All</a>
+                      <a href="/admin/categories-restore-all" style="color: white;"  onclick="return confirm('Apa yakin ingin mengembalikan semua data ini?')">Restore All</a>
                   </button>
                   <button type="button" class="btn-sm btn-danger btn-icon-text" onclick="">
                       <i class="mdi mdi-delete-forever btn-icon-prepend"></i>
-                      <a href="/categories-delete-all" style="color: white"  onclick="return confirm('Apa yakin ingin menghapus permanen semua data ini?')">Delete All</a>
+                      <a href="/admin/categories-delete-all" style="color: white"  onclick="return confirm('Apa yakin ingin menghapus permanen semua data ini?')">Delete All</a>
                   </button>
                   </span>
                   <div class="table-responsive">
@@ -36,8 +36,8 @@
                         <tr>
                           <td>{{ $category->category_name }}</td>
                           <td>
-                              <a class="btn-sm btn-info" href="/categories/restore/{{ $category->id }}"  onclick="return confirm('Apa yakin ingin mengembalikan data ini?')">Restore</a>
-                              <a class="btn-sm btn-danger" href="/categories/destroy/{{ $category->id }}"  onclick="return confirm('Apa yakin ingin menghapus permanen data ini?')">Delete</a>
+                              <a class="btn-sm btn-info" href="/admin/categories/restore/{{ $category->id }}"  onclick="return confirm('Apa yakin ingin mengembalikan data ini?')">Restore</a>
+                              <a class="btn-sm btn-danger" href="/admin/categories/destroy/{{ $category->id }}"  onclick="return confirm('Apa yakin ingin menghapus permanen data ini?')">Delete</a>
                           </td>
                         </tr>
                         @endforeach

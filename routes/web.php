@@ -137,5 +137,3 @@ Route::get('/couriers-delete-all', 'AdminCourierController@delete_all');
     Route::post('/transaksi/detail/status', 'AdminDetailTransaksiController@membatalkanPesanan');
 
 });
-
-

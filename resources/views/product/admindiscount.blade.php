@@ -1,24 +1,29 @@
 @extends('layouts.adminApp')
 @section('content')
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
 @if ($message = Session::get('success'))
-      		<div class="alert alert-success alert-block">
-        		<button type="button" class="close" data-dismiss="alert">×</button> 
-          		<strong>{{ $message }}</strong>
-      		</div>
-		@endif
-		@if ($message = Session::get('error'))
-      		<div class="alert alert-danger alert-block">
-        		<button type="button" class="close" data-dismiss="alert">×</button> 
-        		<strong>{{ $message }}</strong>
-      		</div>
-    	@endif
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button> 
+          	<strong>{{ $message }}</strong>
+    </div>
+@endif
+@if ($message = Session::get('error'))
+    <div class="alert alert-danger alert-block">
+    	<button type="button" class="close" data-dismiss="alert">×</button> 
+        	<strong>{{ $message }}</strong>
+    </div>
+@endif
 <div class="table">
 		<h2 class="card-title" align="center">List Diskon</h2 >
 		<br>
 		<span>
 		<button type="button" class="btn-sm btn-success btn-icon-text" onclick="">
 			<i class="mdi mdi-upload btn-icon-prepend fa fa-plus"></i>     
-			<a href="/addDiscount/{{ $prd }}" style="color: white;">Tambah Diskon</a>
+			<a href="/admin/addDiscount/{{ $prd }}" style="color: white;">Tambah Diskon</a>
 		</button>
 		</span>
 		  <table class="table table-striped table-hover" style="width:1100px;">
