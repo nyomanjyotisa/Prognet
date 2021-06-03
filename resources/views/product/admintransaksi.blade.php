@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.adminApp')
 @section('content')
 <div class="btn-group-horizontal">
     <button class="btn btn-primary status" id="all">All</button>

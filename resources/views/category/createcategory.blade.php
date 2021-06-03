@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.adminApp')
 @section('content')
 <div class="container">
 	<div class="row align-items-centre">

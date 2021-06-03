@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>GadgetIT</title>
   <link rel="stylesheet" href="{{ asset('template/vendors/feather/feather.css') }} ">
   <link rel="stylesheet" href="{{ asset('template/vendors/ti-icons/css/themify-icons.css') }} ">
   <link rel="stylesheet" href="{{ asset('template/vendors/css/vendor.bundle.base.css') }} ">
@@ -324,7 +324,6 @@ $('#tombol').click(function(e){
       });
     </script>
 <!-- mother grid end here-->
-    
 </body>
 </html>
 

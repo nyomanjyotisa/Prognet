@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.adminApp')
 @section('judul','Admin | Tambah Kategori Page')
 @section('content')
 <div style="margin-top:50px ">

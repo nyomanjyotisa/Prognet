@@ -44,25 +44,25 @@ class TransactionDetailController extends Controller
             $transaksi->status = 'canceled';
             $transaksi->save();
             return redirect('/transaksi/detail/'.$request->id);
-        // }elseif($request->status == 3){
-        //     $transaksi->status = 'verified';
-        //     $transaksi->save();
+        }elseif($request->status == 3){
+            $transaksi->status = 'verified';
+            $transaksi->save();
 
-        //     foreach($transaksi->transaction_detail as $item){
-        //         $produk = Product::find($item->product_id);
-        //         $produk->stock = $produk->stock - $item->qty;
-        //         $produk->save();
-        //     }
+            foreach($transaksi->transaction_detail as $item){
+                $produk = Product::find($item->product_id);
+                $produk->stock = $produk->stock - $item->qty;
+                $produk->save();
+            }
 
-        //     return redirect('admin/transaksi/detail/'.$request->id);
+            return redirect('admin/transaksi/detail/'.$request->id);
         }elseif($request->status == 2){
             $transaksi->status = 'success';
             $transaksi->save();
             return redirect('/transaksi/detail/'.$request->id);
-        // }else{
-        //     $transaksi->status = 'delivered';
-        //     $transaksi->save();
-        //     return redirect('admin/transaksi/detail/'.$request->id);
+        }else{
+            $transaksi->status = 'delivered';
+            $transaksi->save();
+            return redirect('admin/transaksi/detail/'.$request->id);
         }
     }
 

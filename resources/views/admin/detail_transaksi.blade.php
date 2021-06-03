@@ -155,7 +155,7 @@
                                     @if ($transaksi->status == "unverified" && !is_null($transaksi->proof_of_payment))
                                         <br>
                                         <div class="d-flex justify-content-center">
-                                            <form action="/admin/transaksi/detail/status" method="POST">
+                                            <form action="/transaksi/detail/status" method="POST">
                                               @csrf
                                               <input type="hidden" name="id" value="{{$transaksi->id}}">
                                               <input type="hidden" name="status" value="3">
@@ -166,7 +166,7 @@
                                     
                                     @if ($transaksi->status === 'verified')
                                             <div class="d-flex justify-content-center">
-                                            <form action="/admin/transaksi/detail/status" method="POST">
+                                            <form action="/transaksi/detail/status" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{$transaksi->id}}">
                                                 <input type="hidden" name="status" value="4">
@@ -177,7 +177,7 @@
 
                                     @if ($transaksi->status === 'indelivery')
                                             <div class="d-flex justify-content-center">
-                                            <form action="/admin/transaksi/detail/status" method="POST">
+                                            <form action="/transaksi/detail/status" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{$transaksi->id}}">
                                                 <input type="hidden" name="status" value="5">
@@ -195,11 +195,11 @@
                                         @endif
 
                                         <div  class="d-flex justify-content-center">
-                                          <a href="/admin/transaksi"><button class="btn btn-warning btn-rounded">Back</button></a>
+                                        <a href="/admin/transaksi"><button class="btn btn-warning btn-rounded">Back</button></a>
                                         </div>
                                         @if ($transaksi->status == 'unverified')
                                           <div class="d-flex justify-content-center mt-5">
-                                            <form action="/admin/transaksi/detail/status" method="POST">
+                                            <form action="/transaksi/detail/status" method="POST">
                                               @csrf
                                               <input type="hidden" name="id" value="{{$transaksi->id}}">
                                               <input type="hidden" name="status" value="1">
@@ -349,6 +349,45 @@
                      @if ($status != 0)               
                         <button class="btn btn-sm btn-success lihat-review" data-toggle="modal" data-target="#modalLihatReview"
                             data-produk="{{$item->product->product_name}}" >Berikan Balasan</button>
+
+                            <div class="modal fade" id="modalLihatReview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog cascading-modal" role="document">
+                  <!-- Content -->
+                  <div class="modal-content">
+
+                    <!-- Header -->
+                    <div class="modal-header light-blue darken-3 white-text">
+                      <h4 class="mb-2" id="product_name" name="product_name"></h4>
+                      <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    
+
+                    <!-- Body -->
+                    <div class="modal-body">
+									  <form action="{{route('response.store')}}" method="POST">
+									  @csrf
+									  <div class="form-group">
+										<input type="text" name="" readonly="" value="{{$review->content}}" class="form-control">
+									  </div>
+									  <div class="form-group">
+										<label>Respon</label>
+										<input type="text" name="content" class="form-control" style="width: 80%; margin-right: 20px;" placeholder="Respon review">
+										<input type="hidden" name="review_id" value="{{$review->id}}">
+										<input type="hidden" name="admin_id" value="{{Auth::user()->id}}">
+									  </div>
+								  </div>
+                      <div class="text-center mt-1-half">
+                      <button type="submit" class="btn btn-info mb-2" id="kirim-review">Send</button>
+                      </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                </div>
+              </div>
                     @else
                         <button class="btn btn-sm btn-success lihat-review" data-toggle="modal" data-target="#modalLihatReview" disabled>Belum Ada Review</button>
                     @endif     
@@ -388,44 +427,6 @@
       </div>
       </div>
 
-      <div class="modal fade" id="modalLihatReview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog cascading-modal" role="document">
-                  <!-- Content -->
-                  <div class="modal-content">
-
-                    <!-- Header -->
-                    <div class="modal-header light-blue darken-3 white-text">
-                      <h4 class="mb-2" id="product_name" name="product_name"></h4>
-                      <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    
-
-                    <!-- Body -->
-                    <div class="modal-body">
-									  <form action="{{route('response.store')}}" method="POST">
-									  @csrf
-									  <div class="form-group">
-										<!-- <input type="text" name="" readonly="" value="{{$review->content}}" class="form-control"> -->
-									  </div>
-									  <div class="form-group">
-										<label>Respon</label>
-										<input type="text" name="content" class="form-control" style="width: 80%; margin-right: 20px;" placeholder="Respon review">
-										<input type="hidden" name="review_id" value="{{$review->id}}">
-										<input type="hidden" name="admin_id" value="{{Auth::user()->id}}">
-									  </div>
-								  </div>
-                      <div class="text-center mt-1-half">
-                      <button type="submit" class="btn btn-info mb-2" id="kirim-review">Send</button>
-                      </form>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Content -->
-                </div>
-              </div>
                                     
 @endsection
 @section('script')

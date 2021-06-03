@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/marknotif', 'UsersController@marknotif');
 Route::get('/', 'HomeUnauthController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/product/{id}', 'HomeUnauthController@show');
@@ -72,7 +72,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset')->name('admin.password.update');
     
-    Route::get('/marknotif', 'UsersController@marknotif');
+
 
     Route::resource('response', 'ResponseController');
     Route::post('/admin/transaksi/sort', 'TransactionController@sort');
@@ -103,11 +103,11 @@ Route::get('/products/destroy/{id}', 'AdminProductController@delete');
 Route::get('/products-delete-all', 'AdminProductController@delete_all');
 Route::resource('product_images','AdminProductImageController');
 Route::resource('discounts','AdminDiscountController');
-// Route::resource('response', 'ResponseController');
-// Route::post('/admin/transaksi/sort', 'TransactionController@sort');
-// Route::post('/report-bulan', 'TransactionController@filterBulan');
-// Route::post('/report-tahun', 'TransactionController@filterTahun');
-// Route::post('/grafik', 'TransactionController@grafik');
+Route::resource('response', 'ResponseController');
+Route::post('/admin/transaksi/sort', 'TransactionController@sort');
+Route::post('/report-bulan', 'TransactionController@filterBulan');
+Route::post('/report-tahun', 'TransactionController@filterTahun');
+Route::post('/grafik', 'TransactionController@grafik');
 
 
 // //Admin Product_Categories

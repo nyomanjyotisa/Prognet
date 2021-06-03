@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.adminApp')
 @section('judul','Admin | Tambah Kurir Page')
 @section('content')
 <div style="margin-top:50px ">
