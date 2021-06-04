@@ -66,7 +66,7 @@ class AdminCategoryController extends Controller
         $category = new Category;
         $category->category_name = $request->category_name;
         $category->save();
-        return Redirect::to('categories')->with(['success' => 'Berhasil Menambah Kategori']);
+        return Redirect::to('/admin/categories')->with(['success' => 'Berhasil Menambah Kategori']);
     }
 
     /**
