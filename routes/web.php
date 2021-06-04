@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/admin/transaksi/sort', 'TransactionController@sort');
+Route::post('/report-bulan', 'TransactionController@filterBulan');
+Route::post('/report-tahun', 'TransactionController@filterTahun');
+Route::post('/grafik', 'TransactionController@grafik');
 Route::get('/marknotif', 'UsersController@marknotif');
 Route::get('/', 'HomeUnauthController@index');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -75,10 +79,6 @@ Route::prefix('admin')->group(function(){
 
 
     Route::resource('response', 'ResponseController');
-    Route::post('/admin/transaksi/sort', 'TransactionController@sort');
-    Route::post('/report-bulan', 'TransactionController@filterBulan');
-    Route::post('/report-tahun', 'TransactionController@filterTahun');
-    Route::post('/grafik', 'TransactionController@grafik');
     Route::post('/respon', 'ResponseController@store');
 
     Route::post('/beli', 'TransactionController@store');
