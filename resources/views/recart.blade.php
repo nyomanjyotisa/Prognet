@@ -104,9 +104,15 @@
             @csrf
               <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
               <input type="hidden" name="sub_total" value="{{$total}}">
-            <button type="submit" class="main_btn">Proceed to checkout
-              <i class="fa fa-angle-right right"></i>
-            </button>
+              @if($cart->isEmpty())
+              <button type="submit" class="main_btn" disabled>Proceed to checkout
+                <i class="fa fa-angle-right right"></i>
+              </button>
+              @else
+              <button class="main_btn">Proceed to checkout
+                <i class="fa fa-angle-right right"></i>
+              </button>
+              @endif
           </form>
         </div>
         <a href="/home" class="gray_btn mx-3">Continue Shopping</a>
